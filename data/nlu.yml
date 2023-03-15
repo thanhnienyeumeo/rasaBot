@@ -1,0 +1,22 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - xin chào
+    - chào
+    - hello
+    - có ai đây không
+    - chào bạn
+    - start
+
+- intent: goodbye
+  examples: |
+    - tạm biệt
+    - bye
+    - hẹn gặp lại
+- intent: bot_challenge
+  examples: |
+    - Bạn là ai
+    - Bạn sinh ra từ đâu
+    - Ai là người tạo ra bạn
