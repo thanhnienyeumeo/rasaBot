@@ -13,3 +13,17 @@ stories:
   - action: utter_greet
   - intent: goodbye
   - action: utter_goodbye
+- story : faq
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: faq
+  - action: utter_faq
+  
+- story: get_name
+  steps:
+  - intent: greet
+  - action: utter_greet
+            utter_askname
+  - intent: get_name
+  - action: utter_greet_with_name

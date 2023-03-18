@@ -1,6 +1,9 @@
 version: "3.1"
 
 nlu:
+-intent: start
+  examples: |
+    - /start
 - intent: greet
   examples: |
     - xin chào
@@ -15,8 +18,50 @@ nlu:
     - tạm biệt
     - bye
     - hẹn gặp lại
-- intent: bot_challenge
+
+- intent: get_name
+  examples: |
+    - Tên tôi là {name}
+    -
+
+- intent: faq/ask_bot
   examples: |
     - Bạn là ai
     - Bạn sinh ra từ đâu
     - Ai là người tạo ra bạn
+    - Ai tạo ra bạn
+
+- intent: algorithm
+  examples: |
+    - Thuật toán
+    - algorithm
+    - Thuật toán này chạy như thế nào?
+    - Giải bài này bằng thuật toán
+- intent:  get_emotion
+  examples: |
+    - Hôm nay tôi [buồn]("entity": "emotion", "value" : "sad") quá
+    - Tôi [buồn]("entity": "emotion", "value" : "sad") quá
+    - Hôm nay tôi [vui]("entity": "emotion", "value" : "happy") quá
+    - Tôi [vui]("entity": "emotion", "value" : "happy") quá
+    - Tôi cảm thấy [hạnh phúc]("entity": "emotion", "value" : "happy")
+    - [Hạnh phúc]("entity": "emotion", "value" : "happy") quá
+    - Hôm nay là một ngày [tuyệt vời]("entity": "emotion", "value" : "happy")
+    - Hôm nay là một ngày [nhàm chán]("entity": "emotion", "value": "normal")  
+- synonym: sad
+examples: |
+    - buồn
+    - chán
+    - tồi tệ
+- synonym: happy
+examples: |
+    - vui
+    - hạnh phúc
+    - tuyệt vời
+    - mãn nhãn
+- synonym: normal
+examples: |
+    - bình thường
+    - tẻ nhạt
+    - không đặc biệt
+    - không đặc sắc
+    - nhàm chán

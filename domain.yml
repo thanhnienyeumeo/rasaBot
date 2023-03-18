@@ -3,35 +3,55 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
+  - get_emotion
+    use_entities:
+      - emotion
   - bot_challenge
+  - algorithm
+  - chitchat
+  - faq
+
 
 responses:
+
+  utter_start:
+  -text: Bắt đầu nói chuyện với ChatGPTIT
+
   utter_greet:
-  - text: "Chào bạn"
-  - text: "Hello!"
+  - text: Chào bạn
+  - text: Hello!
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
+  - text: "Mong bạn sẽ vui khi nhìn thấy thứ này:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
   utter_goodbye:
-  - text: "Bye"
-  - text: "Hẹn gặp lại"
-  - text: "Mong bạn sẽ quay lại nói chuyện với tôi!"
+  - text: Bye
+  - text: Hẹn gặp lại
+  - text: Mong bạn sẽ quay lại nói chuyện với tôi!
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Colder."
+  utter_faq/ask_bot:
+  - text: Tôi là chatGPTIT tạo bởi Colder
 
+  utter_askname:
+  - text: Tên bạn là gì? 
+
+  utter_greet_with_name:
+  - text: Chào {name}. Tôi có thể giúp gì cho bạn?
+
+
+entities:
+  - emotion
+
+actions:
+  - action_search_name
+
+slots:
+  emotion:
+    type: text
+    mappings:
+    - type: from_entity
+    
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
