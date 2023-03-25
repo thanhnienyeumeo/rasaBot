@@ -65,3 +65,9 @@ examples: |
     - không đặc biệt
     - không đặc sắc
     - nhàm chán
+
+  - intent: get_name
+  examples: |
+    - tên tôi là [Hoàng](name)
+    - tôi là [Hoàng](name)
+    - [Hoàng](name)

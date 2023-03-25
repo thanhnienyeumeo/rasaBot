@@ -13,6 +13,7 @@ stories:
   - action: utter_greet
   - intent: goodbye
   - action: utter_goodbye
+
 - story : faq
   steps:
   - intent: greet
@@ -24,6 +25,36 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-            utter_askname
+  - action: utter_askname
   - intent: get_name
   - action: utter_greet_with_name
+  
+- story: get_emotion_sad
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_emotion
+  - intent: get_emotion
+    entities:
+    - emotion: sad
+  - action: utter_cheer_up
+
+- story: get_emotion_fun
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_emotion
+  - intent: get_emotion
+    entities:
+    - emotion: happy
+  - action: utter_happy_with_you
+
+- story: get_emotion_normal
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_emotion
+  - intent: get_emotion
+    entities:
+    - emotion: normal
+  - action: utter_it_will_better

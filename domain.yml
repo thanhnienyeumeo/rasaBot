@@ -39,7 +39,11 @@ responses:
   utter_greet_with_name:
   - text: Chào {name}. Tôi có thể giúp gì cho bạn?
 
+  utter_happy_with_you:
+  - text: Thật tốt. Mong ngày nào với bạn cũng tốt như vậy.
 
+  utter_it_will_better:
+  - text: Ngày mai sẽ luôn vui hơn hôm nay. Tôi tin là vậy.
 entities:
   - emotion
 
@@ -51,7 +55,7 @@ slots:
     type: text
     mappings:
     - type: from_entity
-    
+      entity: emotion
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
