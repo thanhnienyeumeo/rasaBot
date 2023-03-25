@@ -1,21 +1,19 @@
 version: "3.1"
 
 intents:
+  - start
   - greet
   - goodbye
   - get_emotion
-    use_entities:
-      - emotion
-  - bot_challenge
   - algorithm
-  - chitchat
   - faq
-
+  - chitchat
+  - get_name
 
 responses:
 
   utter_start:
-  -text: Bắt đầu nói chuyện với ChatGPTIT
+  - text: Bắt đầu nói chuyện với ChatGPTIT
 
   utter_greet:
   - text: Chào bạn
@@ -42,8 +40,14 @@ responses:
   utter_happy_with_you:
   - text: Thật tốt. Mong ngày nào với bạn cũng tốt như vậy.
 
+  utter_ask_emotion:
+  - text: Hôm nay bạn cảm thấy thế nào?
+
   utter_it_will_better:
   - text: Ngày mai sẽ luôn vui hơn hôm nay. Tôi tin là vậy.
+
+  utter_chitchat/ask_weather:
+  - text: Tôi chưa được lập trình để trả lời câu hỏi này. Xin lỗi bạn.
 entities:
   - emotion
 
