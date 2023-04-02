@@ -1,27 +1,8 @@
 version: "3.1"
 
 stories:
-
-- story: chào mừng
-  steps:
-  - intent: greet
-  - action: utter_greet
-
-- story: tạm biệt
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story : faq
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: faq
-  - action: utter_faq
   
-- story: get_name
+- story: start_by_get_name
   steps:
   - intent: greet
   - action: utter_greet
@@ -31,8 +12,6 @@ stories:
   
 - story: get_emotion_sad
   steps:
-  - intent: greet
-  - action: utter_greet
   - action: utter_ask_emotion
   - intent: get_emotion
     entities:
@@ -41,8 +20,6 @@ stories:
 
 - story: get_emotion_fun
   steps:
-  - intent: greet
-  - action: utter_greet
   - action: utter_ask_emotion
   - intent: get_emotion
     entities:
@@ -51,8 +28,6 @@ stories:
 
 - story: get_emotion_normal
   steps:
-  - intent: greet
-  - action: utter_greet
   - action: utter_ask_emotion
   - intent: get_emotion
     entities:

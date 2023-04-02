@@ -39,14 +39,14 @@ nlu:
     - Giải bài này bằng thuật toán
 - intent: get_emotion
   examples: |
-    - Hôm nay tôi [buồn]("entity": "emotion", "value" : "sad") quá
-    - Tôi [buồn]("entity": "emotion", "value" : "sad") quá
-    - Hôm nay tôi [vui]("entity": "emotion", "value" : "happy") quá
-    - Tôi [vui]("entity": "emotion", "value" : "happy") quá
-    - Tôi cảm thấy [hạnh phúc]("entity": "emotion", "value" : "happy")
-    - [Hạnh phúc]("entity": "emotion", "value" : "happy") quá
-    - Hôm nay là một ngày [tuyệt vời]("entity": "emotion", "value" : "happy")
-    - Hôm nay là một ngày [nhàm chán]("entity": "emotion", "value": "normal")
+    - Hôm nay tôi [sad](emotion) quá
+    - Tôi [sad](emotion) quá
+    - Hôm nay tôi [happy](emotion) quá
+    - Tôi [happy](emotion) quá
+    - Tôi cảm thấy [happy](emotion)
+    - [happy](emotion) quá
+    - Hôm nay là một ngày [happy](emotion)
+    - Hôm nay là một ngày [normal](emotion)
 - intent: get_name
   examples: |
     - tên tôi là [Hoàng](name)
