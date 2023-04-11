@@ -2,90 +2,58 @@
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
 stories:
-- story: happy path 1
+- story: ask_method_hoc_ba
   steps:
   - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
+      Trường mình định tuyển sinh thế nào vậy bạn?
+    intent: ask_methods
+  - action: utter_ask_methods
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+      Phương thức [xét tuyển học bạ](method)
+    intent: ask_method
+  - action: utter_ask_method
 
-- story: happy path 2
+- story: ask_method_tuyen_thang
   steps:
   - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
+      Trường mình định tuyển sinh thế nào vậy bạn?
+    intent: ask_methods
+  - action: utter_ask_methods
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
+      Phương thức [xét tuyển thẳng](method)
+    intent: ask_method
+  - action: utter_ask_method
 
-- story: sad path 1
+- story: ask_method_xet_diem
   steps:
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
+      Trường mình định tuyển sinh thế nào vậy bạn?
+    intent: ask_methods
+  - action: utter_ask_methods
   - user: |
-      not good
-    intent: mood_unhappy
+      Phương thức [xét điểm thi THPT](method)
+    intent: ask_method
+  - action: utter_ask_method
+
+- story: get_emotion_sad
+  steps:
+  - user: |
+      Hôm nay tôi [buồn](emotion) quá
   - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
 
-- story: sad path 2
+- story: get_emotion_fun
   steps:
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
+      Hôm nay tôi [vui](emotion) quá
+  - action: utter_happy_with_you
 
-- story: sad path 3
+- story: get_emotion_normal
   steps:
   - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
+      Hôm nay thật [tẻ nhạt](emotion)
+  - action: utter_it_will_better
 
-- story: say goodbye
+- story: get_A*
   steps:
   - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: bot challenge
-  steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+      Hôm 

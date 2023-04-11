@@ -3,6 +3,7 @@ version: "3.1"
 nlu:
 - intent: start
   examples: |
+    - start
     - /start
 - intent: greet
   examples: |
@@ -11,7 +12,6 @@ nlu:
     - hello
     - có ai đây không
     - chào bạn
-    - start
 
 - intent: goodbye
   examples: |
@@ -25,49 +25,190 @@ nlu:
     - Bạn sinh ra từ đâu
     - Ai là người tạo ra bạn
     - Ai tạo ra bạn
+    - Bạn có thể làm được những gì?
+    - Bạn có thể trả lời những gì
+    - Bạn có khả năng gì
+    - 
 - intent: chitchat/ask_weather
   examples: |
     - Thời tiết hôm nay thế nào?
     - Hôm nay trời thế nào?
     - Hôm nay trời có đẹp không?
     - Thời tiết hôm nay ra sao?
-- intent: algorithm
+- intent: ask_algorithm_A*
   examples: |
-    - Thuật toán
-    - algorithm
-    - Thuật toán này chạy như thế nào?
-    - Giải bài này bằng thuật toán
-- intent: get_emotion
+    - Thuật toán A* là gì?
+    - Thuật toán tìm kiếm A* chạy như thế nào?
+    - Cách hoạt động của tìm kiếm A*
+    - Cách thuật toán tìm kiếm A* chạy
+    - Nêu định nghĩa thuật toán tìm kiếm A*
+    - Nêu khái niệm thuật toán A*
+- intent: solve_A*
   examples: |
-    - Hôm nay tôi [sad](emotion) quá
-    - Tôi [sad](emotion) quá
-    - Hôm nay tôi [happy](emotion) quá
-    - Tôi [happy](emotion) quá
-    - Tôi cảm thấy [happy](emotion)
-    - [happy](emotion) quá
-    - Hôm nay là một ngày [happy](emotion)
-    - Hôm nay là một ngày [normal](emotion)
-- intent: get_name
+    - Giải 1 bài toán sử dụng tìm kiếm A*
+    - Sử dụng thuật toán A* tìm đường đi ngắn nhất
+    - Dùng A* tìm cho tôi đường đi từ đến
+    - Xử lý một bài toán sử dụng tìm kiếm A*
+- intent: solve_greedy
   examples: |
-    - tên tôi là [Hoàng](name)
-    - tôi là [Hoàng](name)
-    - [Hoàng](name)
-    - Tên là [Hoàng](name) nhé
-- synonym: sad
+    - Giải 1 bài toán sử dụng greedy
+    - Giải 1 bài toán sử dụng tìm kiếm tham lam
+    - Sử dụng greedy search 
+    - Sử dụng tìm kiếm tham lam tìm đường đi tối ưu
+    - Xử lý một bài toán tìm kiếm tham lam
+- intent: ask_algorithm_greedy
   examples: |
-    - buồn
-    - chán
-    - tồi tệ
-- synonym: happy
+    - Thuật toán tìm kiếm tham lam là gì?
+    - Thuật toán greddy search chạy như thế nào?
+    - Cách hoạt động của tìm kiếm tham lam
+    - Nêu định nghĩa thuật toán tìm kiếm tham lam
+    - Nêu định nghĩa thuật toán greedy search
+    - Nêu khái niệm thuật toán tìm kiếm tham lam
+    - Greddy search là gì?
+- intent: get_edge
   examples: |
-    - vui
-    - hạnh phúc
-    - tuyệt vời
-    - mãn nhãn
-- synonym: normal
+    - Từ đỉnh [A](start_node) tới đỉnh [S](end_node)
+    - Từ [S](start_node) tới [G](end_node)
+    - từ [S](start_node) đến [A](end_node)
+    - [G](start_node) tới [F](end_node)
+    - Đỉnh [B](start_node) đến [E](end_node)
+    - Bắt đầu là [D](start_node) kết thúc là [C](end_node)
+    - Từ [K](start_node) cho tới [H](end_node)
+    - Đường đi từ [H](start_node) đến [K](end_node)
+    - Đường đi từ đỉnh [I](start_node) đến [G](end_node)
+    - Đường đi từ [A](start_node) đến đỉnh [I](end_node)
+    - Từ [E](start_node) cho tới [B](end_node)
+    - Từ [F](start_node) đến [C](end_node) thì sao
+- intent: ask_methods
   examples: |
-    - bình thường
-    - tẻ nhạt
-    - không đặc biệt
-    - không đặc sắc
-    - nhàm chán
+    - Các phương thức tuyển sinh
+    - Phương thức tuyển sinh là gì?
+    - Trường mình tuyển sinh kiểu gì?
+    - Quá trình tuyển sinh như thế nào?
+    - Tôi muốn tìm hiểu phương thức tuyển sinh của trường mình 
+    - Tôi muốn tìm hiểu phương thức tuyển sinh của trường PTIT
+    - Tôi muốn tìm hiểu phương thức tuyển sinh của học viện
+    - Trường mình xét tuyển thế nào?
+- intent: ask_method
+  examples: |
+    - Tôi muốn tìm hiểu về phương thức [xét tuyển kết hợp](method)
+    - Tôi muốn tìm hiểu về phương thức [tuyển thẳng](method)
+    - Tôi muốn tìm hiểu về phương thức xét kết quả [điểm thi đại học](method)
+    - Tôi muốn tìm hiểu về phương thức xét kết quả [điểm thi tốt nghiệp THPT](method)
+    - Tôi muốn tìm hiểu về phương thức [kỳ thi đánh giá năng lực](method)
+    - Xét kết quả [kỳ thi tốt nghiệp](method)
+    - [xét tuyển kết hợp](method)
+    - [tuyển thẳng](method)
+    - Xét điểm [thi tốt nghiệp THPT](method)
+    - Xét điểm [thi tốt nghiệp](method)
+    - [tuyển thẳng](method) thế nào?
+    - [xét tuyển thẳng](method) thế nào?
+    - [kỳ thi đánh giá năng lực](method)
+    - Phương thức [xét tuyển kết hợp](method) như thế nào?
+    - Phương thức kết quả [thi tốt nghiệp THPT](method) là gì?
+    - Phương thức kết quả [kì thi tốt nghiệp](method) là gì?
+    - Phương thức [tuyển thẳng](method) là gì?
+    - [tuyển thẳng](method) trường mình là sao?
+    - Lấy kết quả [kỳ thi đánh giá năng lực](method) như thế nào?
+    - Lấy kết quả [kì thi đánh giá năng lực](method) ra sao?
+    - Lấy kết quả [đánh giá năng lực](method) như thế nào?
+    - Lấy kết quả [thi tốt nghiệp](method) kiểu gì?
+    - Lấy kết quả [thi đại học](method) kiểu gì?
+    - điều kiện [tuyển thẳng](method) là gì?
+    - [tuyển thẳng] cần những gì?
+    - Thế [xét tuyển thẳng](method) thì sao?
+    - Thế [xét kết hợp](method) thì như nào?
+    - Thế nào là [xét kết hợp](method)?
+    - Lấy kết quả [kì thì đánh giá năng lực](method) thì như thế nào?
+    - [Xét tuyển kết hợp] là xét những điều kiện gì?
+
+- intent: ask_diem_chuan
+  examples: |
+    - Điểm chuẩn ngành [Thương mại điện tử](major) 
+    - Điểm chuẩn [Kế toán](major)
+    - Điểm chuẩn [Marketing](major)
+    - Cho mình hỏi điểm của ngành [Quản trị kinh doanh](major)
+    - Điểm chuẩn ngành [Công nghệ thông tin](major) năm ngoái
+    - Điểm chuẩn ngành [Khoa học máy tính](major) là bao nhiêu
+    - Cho tôi biết điểm chuẩn [An toàn thông tin](major) 
+    - Điểm chuẩn ngành [Truyền thông đa phương tiện](major)
+    - Điểm chuẩn ngành [Công nghệ đa phương tiện](major)
+    - Điểm chuẩn ngành [Quản trị kinh doanh](major)
+    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
+    - Điểm chuẩn [Công nghệ tài chính](major)
+    - Điểm chuẩn ngành [Fintech](major)
+    - Điểm chuẩn ngành [Khoa học máy tính](major)
+    - Điểm chuẩn ngành [An toàn thông tin](major)
+    - Điểm chuẩn ngành [Công nghệ kỹ thuật Điện điện tử](major)
+    - Điểm chuẩn ngành [Công nghệ kỹ thuật](major)
+    - Điểm chuẩn ngành [Điện điện tử](major)
+    - Điểm chuẩn ngành [Kỹ thuật điện tử viễn thông](major)
+    - Điểm chuẩn ngành [Viễn thông](major)
+
+- intent: ask_condition_enrollment
+  examples: |
+    - Đối tượng tuyển sinh trường mình là gì?
+    - Đối tượng dự tuyển trường mình là gì?
+    - Ai sẽ được tuyển sinh trường PTIT
+    - Trường PTIT tuyển sinh những đối tượng nào?
+    - Điều kiện tuyển sinh trường PTIT là gì?
+- intent: ask_register
+  examples: |
+    - Hồ sơ đăng ký 
+    - Thủ tục đăng ký là như thế nào
+    - Nộp hồ sơ đăng ký kiểu gì
+    - Nộp hồ sơ như thế nào
+    - Cho tôi biết về hồ sơ đăng ký dự tuyển
+    - Hồ sơ tuyển sinh
+- intent: ask_to_hop
+  examples: |
+    - Ngành này xét tổ hợp gì?
+    - Xét những tổ hợp gì?
+    - Ngành [Công nghệ thông tin](major) xét những tổ hợp gì?
+    - Ngành [Marketing](major) xét những tổ hợp gì?
+    - [An toàn thông tin](major) xét tổ hợp môn nào?
+    - Xét những khối thi nào?
+- intent: ask_chi_tieu
+  examples: |
+    - Ngành này có bao nhiêu chỉ tiêu?
+    - Bao nhiêu chỉ tiêu?
+    - Ngành này chỉ tiêu là bao nhiêu?
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [thi tốt nghiệp THPT](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu lấy kết quả [kì thi đánh giá năng lực](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)
+    - Tuyển bao nhiêu thí sinh
+    - Tuyển bao nhiêu sinh viên
+- synonym: Công nghệ tài chính
+  examples: |
+    - Fintech
+- synonym: Công nghệ kỹ thuật Điện điện tử
+  examples: |
+    - Công nghệ kỹ thuật
+    - Điện điện tử
+- synonym: Kỹ thuật điện tử viễn thông
+  examples: |
+    - Viễn thông
+- synonym: xét tuyển kết hợp
+  examples: |
+    - xét kết hợp
+    - tuyển kết hợp
+- synonym: thi tốt nghiệp THPT
+  examples: |
+    - điểm thi đại học
+    - thi tốt nghiệp
+    - kì thi tốt nghiệp
+    - kỳ thi tốt nghiệp
+- synonym: xét tuyển thẳng
+  examples: |
+    - tuyển thẳng
+- synonym: kỳ thi đánh giá năng lực
+  examples: |
+    - kì thi đánh giá năng lực
+    - đánh giá năng lực
+- synonym: tìm kiếm tham lam
+  examples: |
+    - greedy search
+- synonym: A*
+  examples: |
+    - tìm kiếm A*

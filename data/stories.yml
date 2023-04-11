@@ -1,35 +1,76 @@
 version: "3.1"
 
 stories:
-  
-- story: start_by_get_name
+
+- story: start_and_get_name
   steps:
+  - intent: start
+  - action: utter_greet
   - intent: greet
   - action: utter_greet
-  - action: utter_askname
-  - intent: get_name
-  - action: utter_greet_with_name
   
-- story: get_emotion_sad
+- story: ask_A*
   steps:
-  - action: utter_ask_emotion
-  - intent: get_emotion
-    entities:
-    - emotion: sad
-  - action: utter_cheer_up
+  - intent: ask_algorithm_A*
+  - action: utter_A*
+  - intent: solve_A*
+  - action: action_solve
+  - intent: get_edge
+  - action: action_solve
 
-- story: get_emotion_fun
-  steps:
-  - action: utter_ask_emotion
-  - intent: get_emotion
-    entities:
-    - emotion: happy
-  - action: utter_happy_with_you
 
-- story: get_emotion_normal
+- story: ask_greedy
   steps:
-  - action: utter_ask_emotion
-  - intent: get_emotion
-    entities:
-    - emotion: normal
-  - action: utter_it_will_better
+  - intent: ask_algorithm_greedy
+  - action: utter_greedy
+  - intent: solve_greedy
+  - action: action_solve
+  - intent: get_edge
+  - action: action_solve
+
+- story: get_method1
+  steps:
+  - intent: ask_methods
+  - action: utter_ask_methods
+  - intent: ask_method
+  - action: action_about_method
+  - intent: ask_diem_chuan
+  - action: action_about_major
+  - intent: ask_diem_chuan
+  - action: action_about_major
+  - intent: ask_chi_tieu
+  - action: action_about_major
+  - intent: ask_to_hop
+  - action: action_about_major
+
+- story: get_method2
+  steps:
+  - intent: ask_methods
+  - action: utter_ask_methods
+  - intent: ask_method
+  - action: action_about_method
+  - intent: ask_condition_enrollment
+  - action: action_about_method
+  - intent: ask_register
+  - action: action_about_method
+
+- story: get_method3
+  steps:
+  - intent: ask_methods
+  - action: utter_ask_methods
+  - intent: ask_method
+  - action: action_about_method
+  - intent: ask_condition_enrollment
+  - action: action_about_method
+  - intent: ask_chi_tieu
+  - action: action_about_method
+
+- story: get_single_method
+  steps:
+  - intent: ask_method
+  - action: action_about_method
+
+- story: ask_diem_chuan
+  steps:
+  - intent: ask_diem_chuan
+  - action: action_about_major

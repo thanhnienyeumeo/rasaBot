@@ -1,11 +1,10 @@
 version: "3.1"
 
 rules:
-- rule: start
+- rule: say hello
   steps:
-  - intent: start
-  - action: utter_start
-
+  - intent: greet
+  - action: utter_greet
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
@@ -20,4 +19,8 @@ rules:
   steps:
   - intent: chitchat
   - action: utter_chitchat
+- rule: rephrase
+  steps:
+  - intent: nlu_fallback
+  - action: utter_dont_understand
 
