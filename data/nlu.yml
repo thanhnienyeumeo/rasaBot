@@ -7,12 +7,12 @@ nlu:
     - /start
 - intent: greet
   examples: |
-    - xin chào
-    - chào
+    - xin chào
+    - chào
     - hello
     - hi
-    - có ai đây không
-    - chào bạn
+    - có ai đây không
+    - chào bạn
 
 - intent: goodbye
   examples: |
@@ -22,22 +22,22 @@ nlu:
 
 - intent: faq/ask_bot
   examples: |
-    - Bạn là ai
-    - Bạn sinh ra từ đâu
-    - Ai là người tạo ra bạn
-    - Ai tạo ra bạn
-    - Bạn có thể làm được những gì?
-    - Bạn có thể trả lời những gì
-    - Bạn có khả năng gì
+    - bạn là ai
+    - bạn sinh ra từ đâu
+    - Ai là người tạo ra bạn
+    - Ai tạo ra bạn
+    - bạn có thể làm được những gì?
+    - bạn có thể trả lời những gì
+    - bạn có khả năng gì
     - ChatGPTIT là gì?
     - ChatGPTIT trả lời được những gì?
 
 - intent: chitchat/ask_emotion
   examples: |
-    - Bạn ổn không?
-    - Bạn khỏe chứ?
-    - Bạn có sao không?
-    - Bạn khỏe không?
+    - bạn ổn không?
+    - bạn khỏe chứ?
+    - bạn có sao không?
+    - bạn khỏe không?
 
 - intent: ask_algorithm_A*
   examples: |
@@ -160,7 +160,7 @@ nlu:
     - Điểm chuẩn ngành [Truyền thông đa phương tiện](major)
     - Điểm chuẩn ngành [Công nghệ đa phương tiện](major)
     - Điểm chuẩn ngành [Quản trị kinh doanh](major)
-    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
+    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
     - Điểm chuẩn [Công nghệ tài chính](major)
     - Điểm chuẩn ngành [Fintech](major)
     - Điểm chuẩn ngành [Khoa học máy tính](major)
@@ -212,7 +212,7 @@ nlu:
 
 - intent: ask_chi_tieu
   examples: |
-    - Ngành này có bao nhiêu chỉ tiêu?
+    - Ngành này có bao nhiêu chỉ tiêu?
     - Bao nhiêu chỉ tiêu?
     - Ngành này chỉ tiêu là bao nhiêu?
     - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [thi tốt nghiệp THPT](method)
@@ -224,11 +224,11 @@ nlu:
     - Tuyển bao nhiêu sinh viên
 - intent: ask_query_diem_chuan
   examples: |
-    - Những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
-    - Những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
-    - Ngành nào có điểm chuẩn [bé hơn](compare) [27](point)
+    - Những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
+    - Những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
+    - Ngành nào có điểm chuẩn [bé hơn](compare) [27](point)
     - Những ngành lấy [không đến](compare) [27.5](point) điểm
-    - Những ngành có điểm chuẩn [bằng](compare) [20](point)
+    - Những ngành có điểm chuẩn [bằng](compare) [20](point)
     - Cho tôi biết ngành nào lấy điểm chuẩn [nhỏ hơn](compare) [26](point) điểm
 
 - synonym: bé hơn
