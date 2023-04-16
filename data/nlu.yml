@@ -10,6 +10,7 @@ nlu:
     - xin chào
     - chào
     - hello
+    - hi
     - có ai đây không
     - chào bạn
 
@@ -28,13 +29,16 @@ nlu:
     - Bạn có thể làm được những gì?
     - Bạn có thể trả lời những gì
     - Bạn có khả năng gì
-    - 
-- intent: chitchat/ask_weather
+    - ChatGPTIT là gì?
+    - ChatGPTIT trả lời được những gì?
+
+- intent: chitchat/ask_emotion
   examples: |
-    - Thời tiết hôm nay thế nào?
-    - Hôm nay trời thế nào?
-    - Hôm nay trời có đẹp không?
-    - Thời tiết hôm nay ra sao?
+    - Bạn ổn không?
+    - Bạn khỏe chứ?
+    - Bạn có sao không?
+    - Bạn khỏe không?
+
 - intent: ask_algorithm_A*
   examples: |
     - Thuật toán A* là gì?
@@ -43,12 +47,14 @@ nlu:
     - Cách thuật toán tìm kiếm A* chạy
     - Nêu định nghĩa thuật toán tìm kiếm A*
     - Nêu khái niệm thuật toán A*
+
 - intent: solve_A*
   examples: |
     - Giải 1 bài toán sử dụng tìm kiếm A*
     - Sử dụng thuật toán A* tìm đường đi ngắn nhất
     - Dùng A* tìm cho tôi đường đi từ đến
     - Xử lý một bài toán sử dụng tìm kiếm A*
+
 - intent: solve_greedy
   examples: |
     - Giải 1 bài toán sử dụng greedy
@@ -56,6 +62,7 @@ nlu:
     - Sử dụng greedy search 
     - Sử dụng tìm kiếm tham lam tìm đường đi tối ưu
     - Xử lý một bài toán tìm kiếm tham lam
+
 - intent: ask_algorithm_greedy
   examples: |
     - Thuật toán tìm kiếm tham lam là gì?
@@ -65,6 +72,7 @@ nlu:
     - Nêu định nghĩa thuật toán greedy search
     - Nêu khái niệm thuật toán tìm kiếm tham lam
     - Greddy search là gì?
+
 - intent: get_edge
   examples: |
     - Từ đỉnh [A](start_node) tới đỉnh [S](end_node)
@@ -79,6 +87,9 @@ nlu:
     - Đường đi từ [A](start_node) đến đỉnh [I](end_node)
     - Từ [E](start_node) cho tới [B](end_node)
     - Từ [F](start_node) đến [C](end_node) thì sao
+    - từ [A](start_node) tới [G](end_node)
+    - từ [A](start_node) cho đến [K](end_node)
+
 - intent: ask_methods
   examples: |
     - Các phương thức tuyển sinh
@@ -91,36 +102,51 @@ nlu:
     - Trường mình xét tuyển thế nào?
 - intent: ask_method
   examples: |
-    - Tôi muốn tìm hiểu về phương thức [xét tuyển kết hợp](method)
-    - Tôi muốn tìm hiểu về phương thức [tuyển thẳng](method)
-    - Tôi muốn tìm hiểu về phương thức xét kết quả [điểm thi đại học](method)
-    - Tôi muốn tìm hiểu về phương thức xét kết quả [điểm thi tốt nghiệp THPT](method)
-    - Tôi muốn tìm hiểu về phương thức [kỳ thi đánh giá năng lực](method)
-    - Xét kết quả [kỳ thi tốt nghiệp](method)
-    - [xét tuyển kết hợp](method)
-    - [tuyển thẳng](method)
-    - Xét điểm [thi tốt nghiệp THPT](method)
-    - Xét điểm [thi tốt nghiệp](method)
-    - [tuyển thẳng](method) thế nào?
-    - [xét tuyển thẳng](method) thế nào?
-    - [kỳ thi đánh giá năng lực](method)
-    - Phương thức [xét tuyển kết hợp](method) như thế nào?
-    - Phương thức kết quả [thi tốt nghiệp THPT](method) là gì?
-    - Phương thức kết quả [kì thi tốt nghiệp](method) là gì?
-    - Phương thức [tuyển thẳng](method) là gì?
-    - [tuyển thẳng](method) trường mình là sao?
-    - Lấy kết quả [kỳ thi đánh giá năng lực](method) như thế nào?
-    - Lấy kết quả [kì thi đánh giá năng lực](method) ra sao?
-    - Lấy kết quả [đánh giá năng lực](method) như thế nào?
-    - Lấy kết quả [thi tốt nghiệp](method) kiểu gì?
-    - Lấy kết quả [thi đại học](method) kiểu gì?
-    - điều kiện [tuyển thẳng](method) là gì?
-    - [tuyển thẳng] cần những gì?
-    - Thế [xét tuyển thẳng](method) thì sao?
+    - Tôi muốn tìm hiểu về phương thức [xét tuyển kết hợp](method)
+    - Tôi muốn tìm hiểu về phương thức [tuyển thẳng](method)
+    - Tôi muốn tìm hiểu về phương thức xét kết quả điểm thi [đại học](method)
+    - Tôi muốn tìm hiểu về phương thức xét kết quả [tốt nghiệp](method)
+    - Tôi muốn tìm hiểu về phương thức kỳ thi [đánh giá năng lực](method)
+    - Xét kết quả kỳ thi [tốt nghiệp](method)
+    - [xét tuyển kết hợp](method)
+    - [tuyển thẳng](method)
+    - Xét điểm thi [tốt nghiệp](method)
+    - Xét điểm [tốt nghiệp](method) THPT
+    - [tuyển thẳng](method) thế nào?
+    - xét [tuyển thẳng](method) thế nào?
+    - kỳ thi [đánh giá năng lực](method)
+    - kì thi [đánh giá năng lực](method)
+    - Phương thức [xét tuyển kết hợp](method) như thế nào?
+    - Phương thức kết quả thi [tốt nghiệp](method) THPT là gì?
+    - Phương thức kết quả kì thi [tốt nghiệp](method) là gì?
+    - Phương thức [tuyển thẳng](method) là gì?
+    - [tuyển thẳng](method) trường mình là sao?
+    - Lấy kết quả [đánh giá năng lực](method) như thế nào?
+    - Lấy kết quả kì thi [đánh giá năng lực](method) ra sao?
+    - Lấy kết quả [đánh giá năng lực](method) như thế nào?
+    - Lấy kết quả thi [tốt nghiệp](method) kiểu gì?
+    - Lấy kết quả thi [đại học](method) kiểu gì?
+    - điều kiện [tuyển thẳng](method) là gì?
+    - [tuyển thẳng] cần những gì?
+    - Thế xét [tuyển thẳng](method) thì sao?
     - Thế [xét kết hợp](method) thì như nào?
     - Thế nào là [xét kết hợp](method)?
-    - Lấy kết quả [kì thì đánh giá năng lực](method) thì như thế nào?
-    - [Xét tuyển kết hợp] là xét những điều kiện gì?
+    - Lấy kết quả kì thi [đánh giá năng lực](method) thì như thế nào?
+    - [xét tuyển kết hợp](method) là xét những điều kiện gì?
+    - Kì thi [đánh giá tư duy](method)
+    - Kết quả kì thi [đánh giá tư duy](method)
+    - [tuyển kết hợp](method) là như thế nào?
+- synonym: xét tuyển kết hợp
+  examples: |
+    - xét kết hợp
+    - tuyển kết hợp
+- synonym: tốt nghiệp
+  examples: |
+    - đại học
+
+- synonym: đánh giá năng lực
+  examples: |
+    - đánh giá tư duy
 
 - intent: ask_diem_chuan
   examples: |
@@ -134,11 +160,11 @@ nlu:
     - Điểm chuẩn ngành [Truyền thông đa phương tiện](major)
     - Điểm chuẩn ngành [Công nghệ đa phương tiện](major)
     - Điểm chuẩn ngành [Quản trị kinh doanh](major)
-    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
+    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
     - Điểm chuẩn [Công nghệ tài chính](major)
     - Điểm chuẩn ngành [Fintech](major)
     - Điểm chuẩn ngành [Khoa học máy tính](major)
-    - Điểm chuẩn ngành [An toàn thông tin](major)
+    - Điểm chuẩn ngành [An toàn thông tin](major)
     - Điểm chuẩn ngành [Công nghệ kỹ thuật Điện điện tử](major)
     - Điểm chuẩn ngành [Công nghệ kỹ thuật](major)
     - Điểm chuẩn ngành [Điện điện tử](major)
@@ -160,25 +186,58 @@ nlu:
     - Nộp hồ sơ như thế nào
     - Cho tôi biết về hồ sơ đăng ký dự tuyển
     - Hồ sơ tuyển sinh
+    - Hồ sơ đăng ký [tốt nghiệp](method)
+    - Hồ sơ xét [tuyển thẳng](method)
+    - Hồ sơ cần [xét kết hợp](method)
+    - Cần những hồ sơ gì khi xét kết quả kì thi [đánh giá năng lực](method)
+    - Hồ sơ cần thiết xét kết quả kì thi [đánh giá tư duy](method)
 - intent: ask_to_hop
   examples: |
     - Ngành này xét tổ hợp gì?
     - Xét những tổ hợp gì?
     - Ngành [Công nghệ thông tin](major) xét những tổ hợp gì?
+    - Ngành [Công nghệ thông tin](major) thi những tổ hợp gì?
     - Ngành [Marketing](major) xét những tổ hợp gì?
-    - [An toàn thông tin](major) xét tổ hợp môn nào?
+    - [An toàn thông tin](major) xét tổ hợp môn nào?
     - Xét những khối thi nào?
+    - [Công nghệ kỹ thuật] xét những tổ hợp gì?
+    - Ngành [Viễn thông](major) xét tổ hợp gì?
+    - [Điện điện tử](major) xét thi những tổ hợp gì?
+    - [Kỹ thuật điện tử viễn thông](major) xét thi những tổ hợp gì?
+    - [Quản trị kinh doanh](major) xét thi những tổ hợp gì?
+    - [Truyền thông đa phương tiện](major) xét thi những tổ hợp gì?
+    - [Công nghệ đa phương tiện](major) xét thi những tổ hợp gì?
+    - [Công nghệ tài chính](major) xét thi những tổ hợp gì?
+    - [Kế toán](major) thi những tổ hợp gì?
+
 - intent: ask_chi_tieu
   examples: |
     - Ngành này có bao nhiêu chỉ tiêu?
     - Bao nhiêu chỉ tiêu?
     - Ngành này chỉ tiêu là bao nhiêu?
-    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [thi tốt nghiệp THPT](method)
-    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu lấy kết quả [kì thi đánh giá năng lực](method)
-    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)
-    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [thi tốt nghiệp THPT](method)
+    - Số chỉ tiêu ngành [Công nghệ thông tin](major)
+    - Ngành [Công nghệ thông tin](major) tuyển bao nhiêu chỉ tiêu lấy kết quả [kì thi đánh giá năng lực](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu sinh viên [xét kết hợp](method)
+    - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)
     - Tuyển bao nhiêu thí sinh
     - Tuyển bao nhiêu sinh viên
+- intent: ask_query_diem_chuan
+  examples: |
+    - Những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
+    - Những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
+    - Ngành nào có điểm chuẩn [bé hơn](compare) [27](point)
+    - Những ngành lấy [không đến](compare) [27.5](point) điểm
+    - Những ngành có điểm chuẩn [bằng](compare) [20](point)
+    - Cho tôi biết ngành nào lấy điểm chuẩn [nhỏ hơn](compare) [26](point) điểm
+
+- synonym: bé hơn
+  examples: |
+    - nhỏ hơn
+    - không đến
+- synonym: lớn hơn
+  examples: |
+    - cao hơn
 - synonym: Công nghệ tài chính
   examples: |
     - Fintech
@@ -189,23 +248,7 @@ nlu:
 - synonym: Kỹ thuật điện tử viễn thông
   examples: |
     - Viễn thông
-- synonym: xét tuyển kết hợp
-  examples: |
-    - xét kết hợp
-    - tuyển kết hợp
-- synonym: thi tốt nghiệp THPT
-  examples: |
-    - điểm thi đại học
-    - thi tốt nghiệp
-    - kì thi tốt nghiệp
-    - kỳ thi tốt nghiệp
-- synonym: xét tuyển thẳng
-  examples: |
-    - tuyển thẳng
-- synonym: kỳ thi đánh giá năng lực
-  examples: |
-    - kì thi đánh giá năng lực
-    - đánh giá năng lực
+
 - synonym: tìm kiếm tham lam
   examples: |
     - greedy search

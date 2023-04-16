@@ -22,7 +22,7 @@ pipeline:
   # - name: ResponseSelector
   #   epochs: 100
 
-  # - name: WhitespaceTokenizer #VietnameseTokenizer
+  # - name: WhitespaceTokenizer #
   #   case_sensitive: false
   # - name: LexicalSyntacticFeaturizer
   # - name: CountVectorsFeaturizer
@@ -44,7 +44,8 @@ pipeline:
   #   ambiguity_threshold: 0.1
 
   #old
-  - name: WhitespaceTokenizer
+  - name: vi_tokenizer.VietnameseTokenizer
+  #- name: WhitespaceTokenizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer

@@ -10,7 +10,6 @@ from rasa.nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 @DefaultV1Recipe.register(
     component_types=[DefaultV1Recipe.ComponentType.MESSAGE_TOKENIZER],
     is_trainable=False,
-
 )
 class VietnameseTokenizer(Tokenizer):
 

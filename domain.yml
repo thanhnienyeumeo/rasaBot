@@ -19,6 +19,7 @@ intents:
   - ask_register
   - ask_to_hop
   - ask_chi_tieu
+  - ask_query_diem_chuan
 responses:
 
   utter_start:
@@ -61,7 +62,7 @@ responses:
              trông có vẻ tốt nhất để mở rộng, không quan tâm tới tương lai. Thuật toán luôn mở rộng nút có giá thành
              đường đi tới đích nhỏ nhất bằng cách sử dụng hàm đánh giá f(n)
              = h(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và ưu tiên mở rộng nút có hàm
-             đánh giá nhỏ nhất.\n
+             đánh giá nhỏ nhất.
              Thuật toán tìm kiếm tham lam không có tính chất đầy đủ, không có tính chất tối ưu vì chỉ phụ thuộc vào hàm heuristic, thời gian
              và bộ nhớ đều là O(b^m). Một số thuật toán
              tìm kiếm có thông tin khác như tìm kiếm A* sẽ hoạt động tốt hơn thuật toán này.'''
@@ -75,7 +76,7 @@ responses:
   - text: '''Tìm kiếm A* là thuật toán tìm kiếm có thông tin trên đồ thị, thuật toán này đã khắc phục được nhược điểm của thuật toán tham lam.
              Thuật toán quan tâm cả đường đi từ điểm xuất phát tới nút đang xét bằng cách sử dụng hàm đánh giá f(n)
              = h(n) + g(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và g(n) là giá thành 
-             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.\n
+             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.
              Thuật toán có tính đầy đủ, có tính tối ưu nếu hàm heuristic là chấp nhận được. Thời gian và bộ nhớ
              đều là O(b^m)'''
     buttons:
@@ -84,8 +85,8 @@ responses:
     - title: "Tham lam là gì"
       payload: "/ask_algorithm_greedy"
 
-  utter_chitchat/ask_weather:
-  - text: Tôi chưa được lập trình để trả lời câu hỏi này. Xin lỗi bạn.
+  utter_chitchat/ask_emotion:
+  - text: Tôi ổn. Tôi vẫn đang tự trau dồi, có gì chưa chính xác mong bạn hãy thông cảm.
   
   utter_default:
   - text: Xin lỗi tôi không biết phải trả lời bạn ra sao. Nhưng bạn có thể search google về vấn đề này trước khi tôi đủ tự tin để trả lời cho bạn. 
@@ -99,11 +100,14 @@ entities:
   - start_node
   - end_node
   - major
+  - compare
+  - point
 actions:
   - action_search_name
   - action_solve
   - action_about_method
   - action_about_major
+  
 slots:
   name: 
     type: text
@@ -115,6 +119,11 @@ slots:
     mappings:
     - type: from_entity
       entity: method
+  major:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: major
       
 session_config:
   session_expiration_time: 60

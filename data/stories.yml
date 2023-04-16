@@ -63,7 +63,9 @@ stories:
   - intent: ask_condition_enrollment
   - action: action_about_method
   - intent: ask_chi_tieu
-  - action: action_about_method
+  - action: action_about_major
+  - intent: ask_diem_chuan
+  - action: action_about_major
 
 - story: get_single_method
   steps:
@@ -73,4 +75,9 @@ stories:
 - story: ask_diem_chuan
   steps:
   - intent: ask_diem_chuan
+  - action: action_about_major
+
+- story: ask_query_diem_chuan
+  steps:
+  - intent: ask_query_diem_chuan
   - action: action_about_major
