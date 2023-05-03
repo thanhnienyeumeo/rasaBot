@@ -20,6 +20,9 @@ intents:
   - ask_to_hop
   - ask_chi_tieu
   - ask_query_diem_chuan
+  - input_graph
+  - directed
+  - undirected
 responses:
 
   utter_start:
@@ -39,50 +42,44 @@ responses:
   - text: Mong bạn sẽ quay lại nói chuyện với tôi!
 
   utter_faq/ask_bot:
-  - text: Tôi là chatGPTIT tạo bởi Colder. Tôi được lập trình để trả lời tất cả câu hỏi liên quan đến tuyển sinh của PTIT. Ngoài ra bạn có thể hỏi tôi về 2 thuật toán tìm kiếm là tham lam và A*.
+  - text: Tôi là chatGPTIT tạo bởi Colder. Tôi được lập trình để trả lời tất cả câu hỏi liên quan đến tuyển sinh PTIT. Ngoài ra bạn có thể hỏi tôi 2 thuật toán là tìm kiếm A sao và tìm kiếm tham lam.
 
   utter_ask_name:
-  - text: Tên bạn là gì? 
-
-  utter_happy_with_you:
-  - text: Thật tốt. Mong ngày nào với bạn cũng tốt như vậy.
-
-  utter_ask_emotion:
-  - text: Hôm nay bạn cảm thấy thế nào?
+  - text: Tên bạn là gì? 
 
   utter_it_will_better:
-  - text: Ngày mai sẽ luôn vui hơn hôm nay. Tôi tin là vậy.
+  - text: Ngày mai sẽ luôn vui hơn hôm nay. Tôi tin là vậy.
 
   utter_ask_methods:
   - text: '''Năm nay PTIT có 4 phương thức tuyển sinh: Xét theo điểm thi Tốt nghiệp THPT năm 2022;
             Xét kết hợp;Xét tuyển thẳng; Xét theo kết quả kì thi đánh giá năng lực. Bạn muốn tìm hiểu về phương thức nào?'''
 
   utter_greedy:
-  - text: '''Tìm kiếm tham lam là thuật toán tìm kiếm có thông tin trên đồ thị, hoạt động theo kiểu "tham lam", tức chọn nút
+  - text: '''Tìm kiếm tham lam là thuật toán tìm kiếm có thông tin trên đồ thị, hoạt động theo kiểu "tham lam", tức chọn nút
              trông có vẻ tốt nhất để mở rộng, không quan tâm tới tương lai. Thuật toán luôn mở rộng nút có giá thành
              đường đi tới đích nhỏ nhất bằng cách sử dụng hàm đánh giá f(n)
-             = h(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và ưu tiên mở rộng nút có hàm
-             đánh giá nhỏ nhất.
+             = h(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và ưu tiên mở rộng nút có hàm
+             đánh giá nhỏ nhất.\n\n
              Thuật toán tìm kiếm tham lam không có tính chất đầy đủ, không có tính chất tối ưu vì chỉ phụ thuộc vào hàm heuristic, thời gian
-             và bộ nhớ đều là O(b^m). Một số thuật toán
-             tìm kiếm có thông tin khác như tìm kiếm A* sẽ hoạt động tốt hơn thuật toán này.'''
+             và bộ nhớ đều là O(b^m). Một số thuật toán
+             tìm kiếm có thông tin khác như tìm kiếm A sao sẽ hoạt động tốt hơn thuật toán này.'''
     buttons:
     - title: "Giải 1 bài toán sử dụng tìm kiếm tham lam"
       payload: "/solve_greedy"
     
-    - title: "A* là gì"
+    - title: "A* là gì"
       payload: "/ask_algorithm_A*"
   utter_A*:
-  - text: '''Tìm kiếm A* là thuật toán tìm kiếm có thông tin trên đồ thị, thuật toán này đã khắc phục được nhược điểm của thuật toán tham lam.
+  - text: '''Tìm kiếm A sao là thuật toán tìm kiếm có thông tin trên đồ thị, thuật toán này đã khắc phục được nhược điểm của thuật toán tham lam.
              Thuật toán quan tâm cả đường đi từ điểm xuất phát tới nút đang xét bằng cách sử dụng hàm đánh giá f(n)
-             = h(n) + g(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và g(n) là giá thành 
-             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.
-             Thuật toán có tính đầy đủ, có tính tối ưu nếu hàm heuristic là chấp nhận được. Thời gian và bộ nhớ
-             đều là O(b^m)'''
+             = h(n) + g(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và g(n) là giá thành 
+             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.\n\n
+             Thuật toán có tính đầy đủ, có tính tối ưu nếu hàm heuristic là chấp nhận được. Thời gian và bộ nhớ
+             đều là O(b^m)'''
     buttons:
     - title: "Giải 1 bài toán sử dụng tìm kiếm A*"
       payload: "/solve_A*"
-    - title: "Tham lam là gì"
+    - title: "Tham lam là gì"
       payload: "/ask_algorithm_greedy"
 
   utter_chitchat/ask_emotion:

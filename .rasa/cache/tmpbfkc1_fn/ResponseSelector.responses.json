@@ -1,0 +1,12 @@
+{
+  "utter_faq/ask_bot": [
+    {
+      "text": "Tôi là chatGPTIT tạo bởi Colder. Tôi được lập trình để trả lời tất cả câu hỏi liên quan đến tuyển sinh PTIT. Ngoài ra bạn có thể hỏi tôi 2 thuật toán là tìm kiếm A sao và tìm kiếm tham lam."
+    }
+  ],
+  "utter_chitchat/ask_emotion": [
+    {
+      "text": "Tôi ổn. Tôi vẫn đang tự trau dồi, có gì chưa chính xác mong bạn hãy thông cảm."
+    }
+  ]
+}

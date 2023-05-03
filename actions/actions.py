@@ -4,6 +4,7 @@
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 from pyuca import Collator
+import os
 ck = Collator().sort_key
 ID = {
 	'Kỹ thuật Điện tử viễn thông': 7520207,
@@ -51,6 +52,8 @@ def letsConnect(user, password):
 #
 class ActionSolve(Action):
     algorithm = None
+    graph = None
+    cnt = 0
     def name(self) -> Text:
         return "action_solve"
 
@@ -59,16 +62,63 @@ class ActionSolve(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last_intent = tracker.get_intent_of_latest_message()
         #debug
+       
         print(last_intent)
         if not last_intent:
             dispatcher.utter_message(text = "Error! Tôi không hiểu!")
             return []
         
         if last_intent == 'solve_greedy' or last_intent == 'solve_A*':
-            self.algorithm = 'greedy' if last_intent == 'solve_greedy' else 'A*'
-            dispatcher.utter_message(text = "Tôi có một đồ thị cho trước như này. Bạn muốn tìm đường đi từ đỉnh nào đến đỉnh nào? "
-                                     , image = 'https://imgur.com/a/ugzpMXP')
             
+            self.algorithm = 'greedy' if last_intent == 'solve_greedy' else 'A*'
+            dispatcher.utter_message(text = "Bạn muốn nhập đồ thị có hướng hay vô hướng?",
+                                     buttons = [{"payload": "/directed", "title" : "Có hướng"},
+                                                {"payload": "/undirected", "title": "Vô hướng"}])
+        elif last_intent == 'directed' or last_intent == 'undirected' or last_intent == "guide":
+            if last_intent == 'directed':
+                
+                self.cnt += 1
+                self.graph = Graph([], [], id = self.cnt, directed = True)
+            elif last_intent == 'undirected':
+
+                self.cnt += 1
+                self.graph = Graph([], [], id = self.cnt, directed = False)
+            
+            msg = '''1. Nếu bạn muốn thêm đỉnh: hãy nhập vào đỉnh cùng giá trị hàm herustic của đinh đó dưới dạng: Tên đỉnh-Trọng số\n
+                    Ví dụ: A-10\n\n
+                    2. Nếu bạn muốn thêm cạnh: hãy nhập vào cạnh dưới dạng đỉnh đầu - đỉnh cuối - trọng số của cạnh đó\n
+                    Ví dụ: S-A-20
+                    '''
+            dispatcher.utter_message(text = msg) 
+
+        elif last_intent == 'input_graph':
+            print(self.graph.cnt)
+            msg = 'Tôi đã hiểu. Đây là đồ thị của bạn sau khi đã thực hiện yêu cầu'
+            text = tracker.latest_message['text'].upper()
+            print(text)
+            a = text.split('-')
+            st = None
+            en = None
+            #print(graph)
+            for i in a:
+                if i.isalpha():
+                    if not st: st = i
+                    elif not en: en = i
+                    else:
+                        dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
+                        return []
+                else:
+                    weight = int(i)
+                    if not en:
+                        if not st:
+                            dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
+                            return []
+                        self.graph.addNode(st, weight)
+                    else:
+                        self.graph.addEdge(st, en, weight)
+                    self.graph.showGraph()
+            dispatcher.utter_message(text = msg, image = "./actions/graph/" + str(self.cnt) + ".png")
+                        
         elif last_intent == 'get_edge':
             st = next(tracker.get_latest_entity_values("start_node",), None)
             en = next(tracker.get_latest_entity_values("end_node"), None)
@@ -78,8 +128,8 @@ class ActionSolve(Action):
                 dispatcher.utter_message(text = 'Xin hãy nói lại! Tôi không hiểu! Chú ý viết hoa chữ cái đại tên đỉnh')
                 return []
             msg = 'Đáp án đường đi tôi tìm được :'
-            if(self.algorithm == 'greedy'): msg += greedy(st, en)
-            else: msg += AStar(st, en)
+            if(self.algorithm == 'greedy'): msg += greedy(st, en, self.graph)
+            else: msg += AStar(st, en, self.graph)
             dispatcher.utter_message(text = msg)
 
         return []

@@ -16,19 +16,19 @@ nlu:
 
 - intent: goodbye
   examples: |
-    - tạm biệt
+    - tạm biệt
     - bye
-    - hẹn gặp lại
+    - hẹn gặp lại
+    - từ biệt
 
 - intent: faq/ask_bot
   examples: |
-    - bạn là ai
-    - bạn sinh ra từ đâu
-    - Ai là người tạo ra bạn
-    - Ai tạo ra bạn
-    - bạn có thể làm được những gì?
-    - bạn có thể trả lời những gì
-    - bạn có khả năng gì
+    - bạn là ai
+    - bạn sinh ra từ đâu
+    - Ai là người tạo ra bạn
+    - bạn có thể làm được những gì?
+    - bạn có thể trả lời những gì?
+    - bạn có khả năng gì?
     - ChatGPTIT là gì?
     - ChatGPTIT trả lời được những gì?
 
@@ -37,15 +37,16 @@ nlu:
     - bạn ổn không?
     - bạn khỏe chứ?
     - bạn có sao không?
-    - bạn khỏe không?
 
 - intent: ask_algorithm_A*
   examples: |
-    - Thuật toán A* là gì?
+    - Thuật toán A* là gì?
     - Thuật toán tìm kiếm A* chạy như thế nào?
+    - Thuật toán tìm kiếm A* là gì
     - Cách hoạt động của tìm kiếm A*
     - Cách thuật toán tìm kiếm A* chạy
     - Nêu định nghĩa thuật toán tìm kiếm A*
+    - Nêu định nghĩa thuật toán A*
     - Nêu khái niệm thuật toán A*
 
 - intent: solve_A*
@@ -54,25 +55,66 @@ nlu:
     - Sử dụng thuật toán A* tìm đường đi ngắn nhất
     - Dùng A* tìm cho tôi đường đi từ đến
     - Xử lý một bài toán sử dụng tìm kiếm A*
+    - Tìm đường đi bằng tìm kiếm A*
 
 - intent: solve_greedy
   examples: |
-    - Giải 1 bài toán sử dụng greedy
+    - Giải 1 bài toán sử dụng greedy search
     - Giải 1 bài toán sử dụng tìm kiếm tham lam
     - Sử dụng greedy search 
     - Sử dụng tìm kiếm tham lam tìm đường đi tối ưu
-    - Xử lý một bài toán tìm kiếm tham lam
+    - Xử lý một bài toán tìm kiếm tham lam 
 
 - intent: ask_algorithm_greedy
   examples: |
-    - Thuật toán tìm kiếm tham lam là gì?
+    - Thuật toán tìm kiếm tham lam là gì?
     - Thuật toán greddy search chạy như thế nào?
     - Cách hoạt động của tìm kiếm tham lam
     - Nêu định nghĩa thuật toán tìm kiếm tham lam
     - Nêu định nghĩa thuật toán greedy search
     - Nêu khái niệm thuật toán tìm kiếm tham lam
-    - Greddy search là gì?
+    - Greddy search là gì?
+- regex: input_graph
+  examples: |
+    - "[a-zA-Z]-([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])"
+    - "[a-zA-Z]-[a-zA-Z]-([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])"
 
+- intent: directed
+  examples: |
+    - Cho tôi một đồ thị có hướng
+    - đồ thị có hướng
+    - có hướng
+
+- intent: undirected
+  examples: |
+    - Cho tôi một đồ thị vô hướng
+    - đồ thị vô hướng
+    - vô hướng
+
+- intent: input_graph
+  examples: |
+    - đồ thị vô hướng
+    - đồ thị có hướng
+    - A-25
+    - B-20
+    - C-45
+    - D-105
+    - E-122
+    - F-78
+    - G-0
+    - S-23
+    - H-100
+    - I-123
+    - A-B-25
+    - C-D-90
+    - A-C-3
+    - S-G-30
+    - K-H-90
+    - A-G-25
+    - E-K-20
+    - F-I-100
+    - I-A-200
+    - S-J-12
 - intent: get_edge
   examples: |
     - Từ đỉnh [A](start_node) tới đỉnh [S](end_node)
@@ -80,7 +122,7 @@ nlu:
     - từ [S](start_node) đến [A](end_node)
     - [G](start_node) tới [F](end_node)
     - Đỉnh [B](start_node) đến [E](end_node)
-    - Bắt đầu là [D](start_node) kết thúc là [C](end_node)
+    - Bắt đầu là [D](start_node) kết thúc là [C](end_node)
     - Từ [K](start_node) cho tới [H](end_node)
     - Đường đi từ [H](start_node) đến [K](end_node)
     - Đường đi từ đỉnh [I](start_node) đến [G](end_node)
@@ -89,17 +131,19 @@ nlu:
     - Từ [F](start_node) đến [C](end_node) thì sao
     - từ [A](start_node) tới [G](end_node)
     - từ [A](start_node) cho đến [K](end_node)
+    - từ đỉnh [C](start_node) đến [H](end_node)
 
 - intent: ask_methods
   examples: |
     - Các phương thức tuyển sinh
-    - Phương thức tuyển sinh là gì?
-    - Trường mình tuyển sinh kiểu gì?
+    - Phương thức tuyển sinh là gì?
+    - Trường mình tuyển sinh kiểu gì?
     - Quá trình tuyển sinh như thế nào?
     - Tôi muốn tìm hiểu phương thức tuyển sinh của trường mình 
     - Tôi muốn tìm hiểu phương thức tuyển sinh của trường PTIT
     - Tôi muốn tìm hiểu phương thức tuyển sinh của học viện
     - Trường mình xét tuyển thế nào?
+    - Bạn biết gì về tuyển sinh của PTIT
 - intent: ask_method
   examples: |
     - Tôi muốn tìm hiểu về phương thức [xét tuyển kết hợp](method)
@@ -117,22 +161,22 @@ nlu:
     - kỳ thi [đánh giá năng lực](method)
     - kì thi [đánh giá năng lực](method)
     - Phương thức [xét tuyển kết hợp](method) như thế nào?
-    - Phương thức kết quả thi [tốt nghiệp](method) THPT là gì?
-    - Phương thức kết quả kì thi [tốt nghiệp](method) là gì?
-    - Phương thức [tuyển thẳng](method) là gì?
-    - [tuyển thẳng](method) trường mình là sao?
+    - Phương thức kết quả thi [tốt nghiệp](method) THPT là gì?
+    - Phương thức kết quả kì thi [tốt nghiệp](method) là gì?
+    - Phương thức [tuyển thẳng](method) là gì?
+    - [tuyển thẳng](method) trường mình là sao?
     - Lấy kết quả [đánh giá năng lực](method) như thế nào?
     - Lấy kết quả kì thi [đánh giá năng lực](method) ra sao?
     - Lấy kết quả [đánh giá năng lực](method) như thế nào?
-    - Lấy kết quả thi [tốt nghiệp](method) kiểu gì?
-    - Lấy kết quả thi [đại học](method) kiểu gì?
-    - điều kiện [tuyển thẳng](method) là gì?
-    - [tuyển thẳng] cần những gì?
+    - Lấy kết quả thi [tốt nghiệp](method) kiểu gì?
+    - Lấy kết quả thi [đại học](method) kiểu gì?
+    - điều kiện [tuyển thẳng](method) là gì?
+    - [tuyển thẳng] cần những gì?
     - Thế xét [tuyển thẳng](method) thì sao?
     - Thế [xét kết hợp](method) thì như nào?
-    - Thế nào là [xét kết hợp](method)?
+    - Thế nào là [xét kết hợp](method)?
     - Lấy kết quả kì thi [đánh giá năng lực](method) thì như thế nào?
-    - [xét tuyển kết hợp](method) là xét những điều kiện gì?
+    - [xét tuyển kết hợp](method) là xét những điều kiện gì?
     - Kì thi [đánh giá tư duy](method)
     - Kết quả kì thi [đánh giá tư duy](method)
     - [tuyển kết hợp](method) là như thế nào?
@@ -150,17 +194,20 @@ nlu:
 
 - intent: ask_diem_chuan
   examples: |
+    - Điểm chuẩn tất cả các ngành
+    - Điểm chuẩn ptit
+    - Cho tôi biết điểm chuẩn năm ngoái
     - Điểm chuẩn ngành [Thương mại điện tử](major) 
     - Điểm chuẩn [Kế toán](major)
     - Điểm chuẩn [Marketing](major)
     - Cho mình hỏi điểm của ngành [Quản trị kinh doanh](major)
     - Điểm chuẩn ngành [Công nghệ thông tin](major) năm ngoái
-    - Điểm chuẩn ngành [Khoa học máy tính](major) là bao nhiêu
+    - Điểm chuẩn ngành [Khoa học máy tính](major) là bao nhiêu
     - Cho tôi biết điểm chuẩn [An toàn thông tin](major) 
     - Điểm chuẩn ngành [Truyền thông đa phương tiện](major)
     - Điểm chuẩn ngành [Công nghệ đa phương tiện](major)
     - Điểm chuẩn ngành [Quản trị kinh doanh](major)
-    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
+    - [Thương mại điện tử](major) có điểm chuẩn là bao nhiêu?
     - Điểm chuẩn [Công nghệ tài chính](major)
     - Điểm chuẩn ngành [Fintech](major)
     - Điểm chuẩn ngành [Khoa học máy tính](major)
@@ -173,16 +220,16 @@ nlu:
 
 - intent: ask_condition_enrollment
   examples: |
-    - Đối tượng tuyển sinh trường mình là gì?
-    - Đối tượng dự tuyển trường mình là gì?
-    - Ai sẽ được tuyển sinh trường PTIT
-    - Trường PTIT tuyển sinh những đối tượng nào?
-    - Điều kiện tuyển sinh trường PTIT là gì?
+    - Đối tượng tuyển sinh trường mình là gì?
+    - Đối tượng dự tuyển trường mình là gì?
+    - Ai sẽ được tuyển sinh trường PTIT
+    - Trường PTIT tuyển sinh những đối tượng nào?
+    - Điều kiện tuyển sinh trường PTIT là gì?
 - intent: ask_register
   examples: |
     - Hồ sơ đăng ký 
-    - Thủ tục đăng ký là như thế nào
-    - Nộp hồ sơ đăng ký kiểu gì
+    - Thủ tục đăng ký là như thế nào
+    - Nộp hồ sơ đăng ký kiểu gì
     - Nộp hồ sơ như thế nào
     - Cho tôi biết về hồ sơ đăng ký dự tuyển
     - Hồ sơ tuyển sinh
@@ -193,13 +240,13 @@ nlu:
     - Hồ sơ cần thiết xét kết quả kì thi [đánh giá tư duy](method)
 - intent: ask_to_hop
   examples: |
-    - Ngành này xét tổ hợp gì?
-    - Xét những tổ hợp gì?
-    - Ngành [Công nghệ thông tin](major) xét những tổ hợp gì?
-    - Ngành [Công nghệ thông tin](major) thi những tổ hợp gì?
-    - Ngành [Marketing](major) xét những tổ hợp gì?
+    - Ngành này xét tổ hợp gì?
+    - Xét những tổ hợp gì?
+    - Ngành [Công nghệ thông tin](major) xét những tổ hợp gì?
+    - Ngành [Công nghệ thông tin](major) thi những tổ hợp gì?
+    - Ngành [Marketing](major) xét những tổ hợp gì?
     - [An toàn thông tin](major) xét tổ hợp môn nào?
-    - Xét những khối thi nào?
+    - Xét những khối thi nào?
     - [Công nghệ kỹ thuật] xét những tổ hợp gì?
     - Ngành [Viễn thông](major) xét tổ hợp gì?
     - [Điện điện tử](major) xét thi những tổ hợp gì?
@@ -214,7 +261,7 @@ nlu:
   examples: |
     - Ngành này có bao nhiêu chỉ tiêu?
     - Bao nhiêu chỉ tiêu?
-    - Ngành này chỉ tiêu là bao nhiêu?
+    - Ngành này chỉ tiêu là bao nhiêu?
     - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [thi tốt nghiệp THPT](method)
     - Số chỉ tiêu ngành [Công nghệ thông tin](major)
     - Ngành [Công nghệ thông tin](major) tuyển bao nhiêu chỉ tiêu lấy kết quả [kì thi đánh giá năng lực](method)
@@ -224,11 +271,12 @@ nlu:
     - Tuyển bao nhiêu sinh viên
 - intent: ask_query_diem_chuan
   examples: |
-    - Những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
-    - Những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
+    - những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
+    - những ngành nào có điểm chuẩn [cao hơn](compare) [25.60](point)
+    - những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
     - Ngành nào có điểm chuẩn [bé hơn](compare) [27](point)
-    - Những ngành lấy [không đến](compare) [27.5](point) điểm
-    - Những ngành có điểm chuẩn [bằng](compare) [20](point)
+    - những ngành lấy [không đến](compare) [27.5](point) điểm
+    - những ngành có điểm chuẩn [bằng](compare) [20](point)
     - Cho tôi biết ngành nào lấy điểm chuẩn [nhỏ hơn](compare) [26](point) điểm
 
 - synonym: bé hơn

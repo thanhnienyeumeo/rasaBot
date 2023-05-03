@@ -23,4 +23,7 @@ rules:
   steps:
   - intent: nlu_fallback
   - action: utter_dont_understand
-
+- rule: do a graph action everytime user want to add edge or vertical
+  steps:
+  - intent: input_graph
+  - action: action_solve

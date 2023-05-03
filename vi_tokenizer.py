@@ -7,6 +7,7 @@ from rasa.engine.graph import GraphComponent, ExecutionContext
 from rasa.nlu.constants import TOKENS_NAMES, MESSAGE_ATTRIBUTES
 from underthesea import word_tokenize
 from rasa.nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
+from unicodedata import normalize
 @DefaultV1Recipe.register(
     component_types=[DefaultV1Recipe.ComponentType.MESSAGE_TOKENIZER],
     is_trainable=False,
@@ -24,7 +25,8 @@ class VietnameseTokenizer(Tokenizer):
 
     def tokenize(self, message: Message, attribute: Text) -> List[Token]:
         text = message.get(attribute)
-        words = word_tokenize(text)
+        text = normalize('NFC',text)
+        words = word_tokenize( text)
         print(words, text)
         tokens = self._convert_words_to_tokens(words, text)
 

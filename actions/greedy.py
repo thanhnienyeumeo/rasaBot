@@ -1,14 +1,16 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from queue import PriorityQueue
+from os import remove, path
 class Graph:
-    def __init__(self, list: list, heuristic: list, directed = False):
+    def __init__(self, list: list, heuristic: list, id = 0, directed = False):
+        self.id = str(id)
         self.directed = directed
         self.cnt = len(list)
         self.heuristic = heuristic
         self.list_node = list
         self.adj_list = {}
-        self.id = {}
+        
         self.g = nx.Graph(directed = directed, data=True)
         #self.pos = []
         count = 0
@@ -25,6 +27,11 @@ class Graph:
         if not self.directed:
             self.adj_list[b].append((a, weight))
             self.edge_cost[(b,a)] = weight
+
+    def addNode(self, a, weight):
+        self.g.add_node(a, h = weight)
+        self.adj_list[a] = []
+        self.cnt+=1
 
     def GreedyAlgorithm(self, st, en):
         pre = {}
@@ -110,27 +117,45 @@ class Graph:
         nx.draw(self.g, pos = pos, with_labels = True, )
         nx.draw_networkx_labels(self.g, pos, labels = labels_node, horizontalalignment = 'left', verticalalignment ='bottom')
         nx.draw_networkx_edge_labels(self.g,pos,edge_labels=labels)
-        plt.savefig(r"D:\Documents\mybot\actions\graph\graph2.png")
-        
-a = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G','H', 'I', 'K', 'S'], [123,82,118,115,72,40,0,70,40,30,125])
-a.addEdge('S', 'A', 55)
-a.addEdge('S', 'B', 42)
-a.addEdge('S', 'C', 48)
-a.addEdge('S', 'E', 72)
-a.addEdge('B', 'C', 40)
-a.addEdge('A', 'D', 45)
-a.addEdge('B', 'F', 40)
-a.addEdge('F', 'G', 55)
-a.addEdge('C', 'F', 68)
-a.addEdge('E', 'G', 82)
-a.addEdge('G', 'K', 38)
-a.addEdge('G', 'I', 47)
-a.addEdge('I', 'H', 50)
-a.addEdge('D', 'E', 45)
-a.showGraph()
-def greedy( st, en, graph = a):
-    return graph.GreedyAlgorithm(st, en)
-def AStar( st, en, graph = a):
-    return graph.AStarAlgorithm(st, en)
-print(greedy('S', 'G'))
-print(AStar('S', 'G'))
+        imgPath = './actions/graph/' + self.id + '.png'
+        if path.isfile(imgPath): remove(imgPath)
+        plt.savefig(imgPath)
+        plt.close()
+def greedy( st, en, graph ):
+        print(f"Đường đi từ {st} đến {en} bằng thuật toán tham lam là: ")
+        return graph.GreedyAlgorithm(st, en)
+def AStar( st, en, graph ):
+        print(f"Đường đi từ {st} đến {en} bằng thuật toán A* là: ")
+        return graph.AStarAlgorithm(st, en)
+def test():      
+    a = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G','H', 'I', 'K', 'S'], [123,82,118,115,72,40,0,70,40,30,125])
+    a.addEdge('S', 'A', 55)
+    a.addEdge('S', 'B', 42)
+    a.addEdge('S', 'C', 48)
+    a.addEdge('S', 'E', 72)
+    a.addEdge('B', 'C', 40)
+    a.addEdge('A', 'D', 45)
+    a.addEdge('B', 'F', 40)
+    a.addEdge('F', 'G', 55)
+    a.addEdge('C', 'F', 68)
+    a.addEdge('E', 'G', 82)
+    a.addEdge('G', 'K', 38)
+    a.addEdge('G', 'I', 47)
+    a.addEdge('I', 'H', 50)
+    a.addEdge('D', 'E', 45)
+    #a.showGraph()
+    b = Graph(['A','B'], [1,2], id = 2)
+    b.addNode('F', 4)
+    #b.addEdge('A', 'B', 2)
+    b.showGraph()
+    b.addNode
+    print(greedy('S', 'G',a))
+    print(AStar('S', 'G',a))
+# c = Graph([],[],id = 1000)
+# c.addNode('A', 3)
+# c.addNode('B', 5)
+# c.addEdge('A','B',10)
+# c.addNode('C',3)
+# c.addNode('E',10)
+# c.addNode('P',100)
+# c.showGraph()

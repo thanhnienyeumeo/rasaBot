@@ -81,3 +81,18 @@ stories:
   steps:
   - intent: ask_query_diem_chuan
   - action: action_about_major
+
+- story: solve_a_graph
+  steps:
+  - or:
+    - intent: solve_A*
+    - intent: solve_greedy
+  - action: action_solve
+  - or:
+    - intent: undirected
+    - intent: directed
+  - action: action_solve
+  - intent: input_graph
+  - action: action_solve
+  - intent: get_edge
+  - action: action_solve
