@@ -56,6 +56,8 @@ nlu:
     - Dùng A* tìm cho tôi đường đi từ đến
     - Xử lý một bài toán sử dụng tìm kiếm A*
     - Tìm đường đi bằng tìm kiếm A*
+    - Tìm đường đi bằng thuật toán A*
+    - Tìm đường đi bằng thuật toán tìm kiếm A*
 
 - intent: solve_greedy
   examples: |
@@ -64,6 +66,7 @@ nlu:
     - Sử dụng greedy search 
     - Sử dụng tìm kiếm tham lam tìm đường đi tối ưu
     - Xử lý một bài toán tìm kiếm tham lam 
+    - TÌm đường đi dùng tìm kiếm tham lam
 
 - intent: ask_algorithm_greedy
   examples: |
@@ -132,7 +135,13 @@ nlu:
     - từ [A](start_node) tới [G](end_node)
     - từ [A](start_node) cho đến [K](end_node)
     - từ đỉnh [C](start_node) đến [H](end_node)
-
+    - từ [A](start_node) đến [I](end_node)
+    - Tìm đường đi từ [A](start_node) đến [I](end_node)
+    - Tìm đường đi từ [S](start_node) đến [G](end_node)
+    - Từ [S](start_node) đến [G](end_node)
+    - Tìm đường đi từ [A](start_node) đến [C](end_node)
+    - Từ [A](start_node) đến [C](end_node)
+    - Từ [E](start_node) đến [G](end_node)
 - intent: ask_methods
   examples: |
     - Các phương thức tuyển sinh
@@ -217,6 +226,33 @@ nlu:
     - Điểm chuẩn ngành [Điện điện tử](major)
     - Điểm chuẩn ngành [Kỹ thuật điện tử viễn thông](major)
     - Điểm chuẩn ngành [Viễn thông](major)
+    - Ngành [Công nghệ kỹ thuật Điện điện tử](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Công nghệ kỹ thuật](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Điện điện tử](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Viễn thông](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Công nghệ tài chính](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Fintech](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Khoa học máy tính](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [An toàn thông tin](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Công nghệ kỹ thuật Điện điện tử](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Công nghệ kỹ thuật](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Điện điện tử](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) có điểm chuẩn là bao nhiêu?
+    - Ngành [Viễn thông](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Fintech](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Công nghệ kỹ thuật Điện điện tử](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Công nghệ kỹ thuật](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Điện điện tử](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Viễn thông](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Fintech](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu điểm chuẩn?
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu điểm chuẩn?
 
 - intent: ask_condition_enrollment
   examples: |
@@ -247,7 +283,7 @@ nlu:
     - Ngành [Marketing](major) xét những tổ hợp gì?
     - [An toàn thông tin](major) xét tổ hợp môn nào?
     - Xét những khối thi nào?
-    - [Công nghệ kỹ thuật] xét những tổ hợp gì?
+    - [Công nghệ kỹ thuật](major) xét những tổ hợp gì?
     - Ngành [Viễn thông](major) xét tổ hợp gì?
     - [Điện điện tử](major) xét thi những tổ hợp gì?
     - [Kỹ thuật điện tử viễn thông](major) xét thi những tổ hợp gì?
@@ -256,6 +292,11 @@ nlu:
     - [Công nghệ đa phương tiện](major) xét thi những tổ hợp gì?
     - [Công nghệ tài chính](major) xét thi những tổ hợp gì?
     - [Kế toán](major) thi những tổ hợp gì?
+    - Ngành [Fintech](major) xét thi những tổ hợp gì?
+    - Ngành [Khoa học máy tính](major) xét thi những tổ hợp gì?
+    - Ngành [An toàn thông tin](major) xét thi những tổ hợp gì?
+    - Ngành [Công nghệ kỹ thuật Điện điện tử](major) xét thi những tổ hợp gì?
+    -
 
 - intent: ask_chi_tieu
   examples: |
@@ -269,20 +310,135 @@ nlu:
     - Ngành [Công nghệ thông tin](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)
     - Tuyển bao nhiêu thí sinh
     - Tuyển bao nhiêu sinh viên
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá tư duy](method)
+    - Ngành [An toàn thông tin](major) lấy bao nhiêu chỉ tiêu xét kết quả [tuyển thẳng](method)
+    - Ngành [Marketing](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Marketing](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Marketing](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Marketing](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Khoa học máy tính](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi tốt nghiệp [THPT](method)?
+    - Ngành [Kế toán](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Kế toán](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Kế toán](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Kế toán](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Công nghệ tài chính](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Công nghệ kỹ thuật điện điện tử](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Công nghệ kỹ thuật điện điện tử](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Công nghệ kỹ thuật điện điện tử](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Công nghệ kỹ thuật điện điện tử](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Công nghệ kỹ thuật](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Công nghệ kỹ thuật](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Công nghệ kỹ thuật](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Công nghệ kỹ thuật](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Công nghệ đa phương tiện](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Công nghệ đa phương tiện](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Công nghệ đa phương tiện](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Công nghệ đa phương tiện](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Truyền thông đa phương tiện](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Truyền thông đa phương tiện](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Truyền thông đa phương tiện](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Truyền thông đa phương tiện](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Viễn thông](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Viễn thông](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Viễn thông](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Viễn thông](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Kỹ thuật điện tử viễn thông](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Quản trị kinh doanh](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Quản trị kinh doanh](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Quản trị kinh doanh](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Quản trị kinh doanh](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    - Ngành [Fintech](major) lấy bao nhiêu chỉ tiêu [tuyển thẳng](method)?
+    - Ngành [Fintech](major) lấy bao nhiêu chỉ tiêu [xét kết hợp](method)?
+    - Ngành [Fintech](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [đánh giá năng lực](method)?
+    - Ngành [Fintech](major) lấy bao nhiêu chỉ tiêu xét kết quả kì thi [THPT](method)?
+    
 - intent: ask_query_diem_chuan
   examples: |
-    - những ngành nào có điểm chuẩn [lớn hơn](compare) [25.60](point)
-    - những ngành nào có điểm chuẩn [cao hơn](compare) [25.60](point)
-    - những ngành có điểm chuẩn [nhỏ hơn](compare) [24](point) điểm
-    - Ngành nào có điểm chuẩn [bé hơn](compare) [27](point)
-    - những ngành lấy [không đến](compare) [27.5](point) điểm
-    - những ngành có điểm chuẩn [bằng](compare) [20](point)
-    - Cho tôi biết ngành nào lấy điểm chuẩn [nhỏ hơn](compare) [26](point) điểm
-
-- synonym: bé hơn
+    - những ngành nào có điểm chuẩn lớn hơn [25.60](point)
+    - những ngành nào có điểm chuẩn nhỏ hơn [25.60](point)
+    - những ngành có điểm chuẩn bé hơn [24](point) điểm
+    - Ngành nào có điểm chuẩn là [27](point)
+    - những ngành lấy điểm chuẩn bằng [27.5](point) điểm
+    - những ngành có điểm chuẩn bé hơn [20.3](point)
+    - Cho tôi biết ngành nào lấy điểm chuẩn lớn hơn [26](point) điểm
+- intent: ask_comment
   examples: |
-    - nhỏ hơn
-    - không đến
+    - Chatbot này tệ quá
+    - Chatbot này hay đấy
+    - Bạn thật là tuyệt
+    - Bạn dở tệ
+    - Không hiểu ra làm sao
+    - Bạn có biết trả lời không đấy?
+    - Tuy thiếu sót nhưng vậy là được rồi
+    - Được đấy
+    - Đủ dùng
+    - Bạn không hiểu những gì tôi nói à?
+    - Chatbot không hiểu những gì tôi nói
+    - Chatbot chưa đủ tốt
+    - Kém
+    - Tốt
+    - Không tốt
+    - Tệ
+    - Tồi
+    - Rất ổn
+    - Ổn
+    - Bình thường
+    - thế là được rồi
+    - Oke
+    - Còn cần phải cải thiện
+    - Được
+    - Cũng được
+    - Tạm được
+    - Tạm ổn
+    - Tạm
+    - Tôi thích chatbot này
+    - Tôi không thích chatbot này
+    - Tôi không thích bạn
+    - Tôi thích bạn
+    - Chatbot hoạt động tốt
+    - Chatbot hoạt động không tốt
+    - Hơi kém
+    - Không ổn
+    - Chatbot này không tốt
+    - Cần phải cải thiện
+    - Nói chung là không tốt tí nào
+    - Còn phải sửa nhiều lắm
+- intent: register
+  examples: |
+    - Tôi muốn đăng ký
+    - Đăng ký xét duyệt sớm
+    - Bạn giúp tôi xét duyệt sớm
+    - Đăng ký trước
+
+- intent: get_information
+  examples: |
+    - Nguyễn Trọng Hoàng, công nghệ thông tin, xét điểm thi THPT
+    - Lê Phúc Hoàng công nghệ thông tin, xét kết quả đánh giá năng lực
+    - Nguyễn Trọng Hoàng, công nghệ thông tin, xét kết quả đánh giá tư duy
+    - Nguyễn Trọng Hoàng, công nghệ thông tin, xét kết quả tuyển thẳng
+    - Trần Văn Đô, an toàn thông tin, xét điểm thi THPT
+    - Trần Văn Đô, an toàn thông tin, xét kết quả đánh giá năng lực
+    - Trần Văn Đô, an toàn thông tin, xét kết quả đánh giá tư duy
+    - Trần Văn Đô, an toàn thông tin, xét kết quả tuyển thẳng
+    - Nguyễn Lê Trúc Quỳnh, marketing, xét điểm thi THPT
+    - Nguyễn Lê Trúc Quỳnh, marketing, xét kết quả đánh giá năng lực
+    - Nguyễn Lê Trúc Quỳnh, marketing, xét kết quả đánh giá tư duy
+    - Lê Duy Bách, kế toán, xét điểm thi THPT
+    - Lê Duy Bách, kế toán, xét kết quả đánh giá năng lực
+    - Trần Phương Nam, khoa học máy tính, xét điểm thi THPT
+
 - synonym: lớn hơn
   examples: |
     - cao hơn

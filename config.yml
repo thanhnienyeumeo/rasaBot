@@ -44,8 +44,8 @@ pipeline:
   #   ambiguity_threshold: 0.1
 
   #old
-  #- name: vi_tokenizer.VietnameseTokenizer
-  - name: WhitespaceTokenizer
+  - name: vi_tokenizer.VietnameseTokenizer
+   #name: WhitespaceTokenizer
   - name: RegexFeaturizer
     use_word_boundaries: False
   - name: LexicalSyntacticFeaturizer

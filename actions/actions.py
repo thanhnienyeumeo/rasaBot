@@ -5,30 +5,13 @@
 # https://rasa.com/docs/rasa/custom-actions
 from pyuca import Collator
 import os
-ck = Collator().sort_key
-ID = {
-	'Kỹ thuật Điện tử viễn thông': 7520207,
-	'Công nghệ kỹ thuật Điện, điện tử': 7510301,
-	'Công nghệ thông tin': 7480201,
-	'An toàn thông tin': 7480202,
-	'Khoa học máy tính': 7480101,
-	'Công nghệ đa phương tiện': 7329001,
-    'Truyền thông đa phương tiện': 7320104,
-	'Báo chí': 7320101,
-	'Quản trị kinh doanh': 7340101,
-	'Thương mại điện tử': 7340122,
-	'Marketing': 7340115,
-	'Kế toán': 7340301,
-	'Công nghệ tài chính': 7340205,
-    'Fintech': 7340205
-}
 
 from typing import Any, Text, Dict, List
-from actions.greedy import Graph, greedy, AStar
+from actions.Search import Graph, greedy, AStar
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from mysql.connector import connect, errorcode, Error
-
+from actions.Sentiment import get
 def letsConnect(user, password):
     db_config = {
         'host': 'localhost',
@@ -96,10 +79,11 @@ class ActionSolve(Action):
             msg = 'Tôi đã hiểu. Đây là đồ thị của bạn sau khi đã thực hiện yêu cầu'
             text = tracker.latest_message['text'].upper()
             print(text)
-            a = text.split('-')
+            a = text.replace('\n', '-').replace(' ', '-')
+            a = a.split('-')
             st = None
             en = None
-            #print(graph)
+            print(a)
             for i in a:
                 if i.isalpha():
                     if not st: st = i
@@ -108,14 +92,21 @@ class ActionSolve(Action):
                         dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
                         return []
                 else:
-                    weight = int(i)
+                    weight = float(i)
                     if not en:
                         if not st:
                             dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
                             return []
                         self.graph.addNode(st, weight)
                     else:
-                        self.graph.addEdge(st, en, weight)
+                        print(st, en, weight)
+                        try:
+                            self.graph.addEdge(st, en, weight)
+                        except:
+                            dispatcher.utter_message('Error! Đỉnh không tồn tại. Xin hãy nhập đỉnh trước khi nhập cạnh')
+                            return []
+                    st = None
+                    en = None
                     self.graph.showGraph()
             dispatcher.utter_message(text = msg, image = "./actions/graph/" + str(self.cnt) + ".png")
                         
@@ -127,7 +118,7 @@ class ActionSolve(Action):
             if not st or not en:
                 dispatcher.utter_message(text = 'Xin hãy nói lại! Tôi không hiểu! Chú ý viết hoa chữ cái đại tên đỉnh')
                 return []
-            msg = 'Đáp án đường đi tôi tìm được :'
+            msg = f'Đáp án đường đi tôi tìm được bằng thuật toán {self.algorithm}:'
             if(self.algorithm == 'greedy'): msg += greedy(st, en, self.graph)
             else: msg += AStar(st, en, self.graph)
             dispatcher.utter_message(text = msg)
@@ -152,7 +143,8 @@ class ActionAboutMethod(Action):
         if last_intent == 'ask_method':
             msg = 'Tôi không hiểu bạn muốn hỏi phương thức tuyển sinh nào. Xin hãy nói rõ hơn!'
             buttons = [{"payload": "/ask_condition_enrollment", "title" : "Đối tượng dự tuyển của PTIT là gì?"},
-                       {"payload": "/ask_register", "title": "Hồ sơ đăng ký"}]
+                       {"payload": "/ask_register", "title": "Hồ sơ đăng ký"},
+                       {"payload": "/register", "title": "Đăng ký xét tuyển sớm online"}]
             if method_slot == 'xét kết hợp':
                 msg = ''' Phương thức xét kết hợp áp dụng với các thí sinh thuộc diện đối tượng dự tuyển của trường PTIT và có thêm ít nhất 1 trong các điều kiện sau:\n
 a)Thí sinh có Chứng chỉ quốc tế SAT, trong thời hạn 02 năm (tính đến ngày xét tuyển) từ 1130/1600 trở lên hoặc ATC từ 25/36 trở lên; và có kết quả điểm trung bình chung học tập lớp 10, 11, 12 đạt từ 7,5 trở lên và có hạnh kiểm Khá trở lên;\n
@@ -233,8 +225,8 @@ class ActionAboutMajor(Action):
         if last_intent == 'ask_diem_chuan':
             
             if not major:
-                query = "select Major_Name, Score from ptit"
-            else: query = "select Score from ptit where Major_Name = (%s)"
+                query = "select MAJOR_NAME, SCORE from nganh"
+            else: query = "select SCORE from nganh where MAJOR_NAME = (%s)"
             args = []
             if major: args.append(major)
             cursor = connection.cursor()
@@ -256,8 +248,15 @@ class ActionAboutMajor(Action):
         #ask_to_hop
         elif last_intent == 'ask_to_hop':
             if not major:
-                query = "select Major_Name, Subject from ptit"
-            else: query = "select Subject from ptit where Major_Name = (%s)"
+                query = ''' select nganh.MAJOR_NAME, tohop.MA_KHOI 
+                            from nganh 
+                            JOIN nganh_tohop ON nganh.MAJOR_ID = nganh_tohop.MAJOR_ID 
+                            JOIN tohop ON tohop.MA_KHOI = nganh_tohop.MA_KHOI''' #change
+            else: query = '''select tohop.MA_KHOI 
+                            from nganh 
+                            JOIN nganh_tohop ON nganh.MAJOR_ID = nganh_tohop.MAJOR_ID 
+                            JOIN tohop ON tohop.MA_KHOI = nganh_tohop.MA_KHOI
+                            where nganh.MAJOR_NAME = (%s)'''
             args = []
             if major: args.append(major)
             cursor = connection.cursor()
@@ -298,8 +297,8 @@ class ActionAboutMajor(Action):
                 dispatcher.utter_message(Text = 'Chỉ tiêu cho xét tuyển thẳng là không giới hạn. Miễn bạn đạt đủ các điều kiện của xét tuyển thẳng thì hãy đăng ký vào PTIT ngay thôi nào!')
                 return []
             if not major:
-                query = "select Major_Name, (%s) from ptit"
-            else: query = f"select {method} from ptit where Major_Name = (%s)"
+                query = "select MAJOR_NAME, (%s) from nganh"
+            else: query = f"select {method} from nganh where MAJOR_NAME = (%s)"
             args = [major]
             
             cursor = connection.cursor()
@@ -320,20 +319,20 @@ class ActionAboutMajor(Action):
             dispatcher.utter_message(text = msg)
 
         elif last_intent == 'ask_query_diem_chuan':
-            compare = next(tracker.get_latest_entity_values("compare"), None)
+            text = tracker.latest_message['text']
             point = next(tracker.get_latest_entity_values("point"), None)
-            if not point or not compare:
+            if not point :
                 dispatcher.utter_message("Xin lỗi. Tôi chưa thực hiện được yêu cầu này. Bạn thử viết rõ hơn xem sao!")
                 return []
-            a = ''
-            if compare == 'lớn hơn': a = '>'
-            elif compare == 'bằng': a = '='
-            else: a = '<'
+            a = '<'
+            if "lớn" in text: a = '>'
+            if "bé" in text or "nhỏ" in text: a = '<'
+            if "bằng" in text or "là" in text: a = '='
             #...
-            query = f"select Major_Name,Score from ptit where Score {a} (%s)"
+            query = f"select MAJOR_NAME,SCORE from nganh where SCORE {a} (%s)"
             args = [point]
             cursor = connection.cursor()
-            print(compare)
+            
             msg = f'Những ngành có điểm chuẩn {a} {point} như bạn mong muốn: \n'
             try:
                 cursor.execute(query, args)
@@ -349,4 +348,48 @@ class ActionAboutMajor(Action):
             cursor.close()
             connection.close()
             dispatcher.utter_message(text = msg)
+        return []
+
+class ActionAboutFeeling(Action):
+    def name(self) -> Text:
+        return "action_get_comment"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        text = tracker.latest_message['text']
+        res = get(text)
+        if res:
+            dispatcher.utter_message(text = 'Xin lỗi tôi vẫn còn nhiều thiêu sót')
+        else: dispatcher.utter_message(text = 'Cảm ơn bạn. Tôi sẽ cố gắng hơn nữa để hoàn thiện bản thân')
+        return []
+    
+class ActionAboutRegister(Action):
+    def name(self) -> Text:
+        return "action_about_register"
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        connection = letsConnect('root', '123456')
+        if connection == None:
+            dispatcher.utter_message(text = 'Lỗi không mong muốn đã xảy ra. Xin hãy thử lại sau ít phút')
+            return []
+        print("da ket noi")
+        text = tracker.latest_message['text']
+        a = text.split(',')
+        if len(a) != 3:
+            dispatcher.utter_message(text = 'Xin lỗi. Có vẻ bạn đã nhập không đúng định dạng! Hãy nhập lại nhé')
+            return []
+        query = f"insert into thi_sinh (Ten, MAJOR_ID, PHUONG_THUC) values (%s, %s, %s)"
+        cursor = connection.cursor()
+        args = a
+        cursor.execute(query, args)
+
+        if cursor.lastrowid:
+            msg = 'Đã thêm bạn vào danh sách đăng ký. ID insert là:' + str(cursor.lastrowid)
+        else:
+            msg = 'INSERT error! Hãy thử lại nhé!'
+        connection.commit()
+        cursor.close()
+        dispatcher.utter_message(text = msg)
         return []

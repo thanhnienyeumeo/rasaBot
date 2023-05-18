@@ -8,7 +8,13 @@ stories:
   - action: utter_greet
   - intent: greet
   - action: utter_greet
-  
+- story: bye_and_get_comment
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  - intent: ask_comment
+  - action: action_get_comment
+
 - story: ask_A*
   steps:
   - intent: ask_algorithm_A*
@@ -96,3 +102,10 @@ stories:
   - action: action_solve
   - intent: get_edge
   - action: action_solve
+
+- story:  register
+  steps:
+  - intent: register
+  - action: utter_register
+  - intent: get_information
+  - action: action_about_register

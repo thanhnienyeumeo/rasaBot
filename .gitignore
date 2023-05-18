@@ -3,3 +3,7 @@ scanImage.py
 test.py
 test_tokenizer
 credentials.yml
+actions/model
+actions/PhoBERT_base_transformers
+.rasa
+desktop.ini

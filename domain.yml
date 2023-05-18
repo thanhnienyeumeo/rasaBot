@@ -23,23 +23,27 @@ intents:
   - input_graph
   - directed
   - undirected
+  - register
+  - get_information
+  - ask_comment
+  
 responses:
 
   utter_start:
   - text: Chào mừng bạn đến với ChatGPTIT. Tôi sẽ trả lời cho bạn tất cả câu hỏi về tuyển sinh cũng như thuật toán tìm kiếm.
  
   utter_greet:
-  - text: Chào {name}. Tôi có thể giúp gì cho bạn?
-  - text: Chào mừng bạn {name}. Tôi rất vui khi có thể giúp đỡ bạn bất kì điều gì.
+  - text: Chào bạn. Tôi có thể giúp gì cho bạn?
+  - text: Chào mừng bạn. Tôi rất vui khi có thể giúp đỡ bạn bất kì điều gì.
 
   utter_cheer_up:
   - text: "Mong bạn sẽ vui khi nhìn thấy thứ này:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_goodbye:
-  - text: Bye
-  - text: Hẹn gặp lại
-  - text: Mong bạn sẽ quay lại nói chuyện với tôi!
+  - text: Bye. Nếu có nhận xét gì xi bạn hãy nói cho tôi biết nhé.
+  - text: Hẹn gặp lại. Nếu có nhận xét gì xi bạn hãy nói cho tôi biết nhé.
+  - text: Mong bạn sẽ quay lại nói chuyện với tôi! Bạn có thể nói cho tôi biết nhận xét gì về tôi nếu bạn muốn nhé.
 
   utter_faq/ask_bot:
   - text: Tôi là chatGPTIT tạo bởi Colder. Tôi được lập trình để trả lời tất cả câu hỏi liên quan đến tuyển sinh PTIT. Ngoài ra bạn có thể hỏi tôi 2 thuật toán là tìm kiếm A sao và tìm kiếm tham lam.
@@ -59,10 +63,10 @@ responses:
              trông có vẻ tốt nhất để mở rộng, không quan tâm tới tương lai. Thuật toán luôn mở rộng nút có giá thành
              đường đi tới đích nhỏ nhất bằng cách sử dụng hàm đánh giá f(n)
              = h(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và ưu tiên mở rộng nút có hàm
-             đánh giá nhỏ nhất.\n\n
+             đánh giá nhỏ nhất.
              Thuật toán tìm kiếm tham lam không có tính chất đầy đủ, không có tính chất tối ưu vì chỉ phụ thuộc vào hàm heuristic, thời gian
              và bộ nhớ đều là O(b^m). Một số thuật toán
-             tìm kiếm có thông tin khác như tìm kiếm A sao sẽ hoạt động tốt hơn thuật toán này.'''
+             tìm kiếm có thông tin khác như tìm kiếm A* sẽ hoạt động tốt hơn thuật toán này.'''
     buttons:
     - title: "Giải 1 bài toán sử dụng tìm kiếm tham lam"
       payload: "/solve_greedy"
@@ -70,10 +74,10 @@ responses:
     - title: "A* là gì"
       payload: "/ask_algorithm_A*"
   utter_A*:
-  - text: '''Tìm kiếm A sao là thuật toán tìm kiếm có thông tin trên đồ thị, thuật toán này đã khắc phục được nhược điểm của thuật toán tham lam.
+  - text: '''Tìm kiếm A* là thuật toán tìm kiếm có thông tin trên đồ thị, thuật toán này đã khắc phục được nhược điểm của thuật toán tham lam.
              Thuật toán quan tâm cả đường đi từ điểm xuất phát tới nút đang xét bằng cách sử dụng hàm đánh giá f(n)
              = h(n) + g(n) với h(n) là hàm heuristic ước lượng giá thành đường đi từ n tới đích và g(n) là giá thành 
-             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.\n\n
+             đường đi từ điểm xuất phát tới n. Thuật toán sẽ ưu tiên nút có hàm đánh giá nhỏ nhất để mở rộng.
              Thuật toán có tính đầy đủ, có tính tối ưu nếu hàm heuristic là chấp nhận được. Thời gian và bộ nhớ
              đều là O(b^m)'''
     buttons:
@@ -90,6 +94,9 @@ responses:
 
   utter_dont_understand:
   - text: Xin lỗi tôi không hiểu lắm. Bạn có thể nói rõ ràng hơn được không?
+
+  utter_register:
+  - text: "Nhập thông tin của bạn theo đúng định dạng như sau:  Tên bạn,Ngành,phương thức. Ví dụ: Nguyễn Trọng Hoàng,Công nghệ thông tin,Xét kết hợp"
 entities:
   - method
   - name
@@ -97,13 +104,14 @@ entities:
   - start_node
   - end_node
   - major
-  - compare
   - point
 actions:
   - action_search_name
   - action_solve
   - action_about_method
   - action_about_major
+  - action_get_comment
+  - action_about_register
   
 slots:
   name: 
