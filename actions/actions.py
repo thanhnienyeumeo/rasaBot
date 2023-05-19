@@ -75,40 +75,48 @@ class ActionSolve(Action):
             dispatcher.utter_message(text = msg) 
 
         elif last_intent == 'input_graph':
-            print(self.graph.cnt)
-            msg = 'Tôi đã hiểu. Đây là đồ thị của bạn sau khi đã thực hiện yêu cầu'
-            text = tracker.latest_message['text'].upper()
-            print(text)
-            a = text.replace('\n', '-').replace(' ', '-')
-            a = a.split('-')
-            st = None
-            en = None
-            print(a)
-            for i in a:
-                if i.isalpha():
-                    if not st: st = i
-                    elif not en: en = i
-                    else:
-                        dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
-                        return []
-                else:
-                    weight = float(i)
-                    if not en:
-                        if not st:
-                            dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
+            try:
+                print(self.graph.cnt)
+                msg = 'Tôi đã hiểu. Đây là đồ thị của bạn sau khi đã thực hiện yêu cầu'
+                text = tracker.latest_message['text'].upper()
+                print(text)
+                a = text.replace('\n', '-').replace(' ', '-')
+                a = a.split('-')
+                st = None
+                en = None
+                print(a)
+                for i in a:  
+                    try:
+                        weight = float(i)
+                        if not en:
+                            if not st:
+                                dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp')
+                                return []
+                            self.graph.addNode(st, weight)
+                        else:
+                            print(st, en, weight)
+                            try:
+                                self.graph.addEdge(st, en, weight)
+                            except:
+                                dispatcher.utter_message('Error! Đỉnh không tồn tại. Xin hãy nhập đỉnh trước khi nhập cạnh')
+                                return []
+                        st = None
+                        en = None
+                        self.graph.showGraph()
+                    except:
+                        if not st: st = i
+                        elif not en: en = i
+                        else:
+                            dispatcher.utter_message('Error! Lỗi cú pháp! Xin hãy nhập đúng cú pháp. Đây là đồ thị của bạn mà tôi đã ghi nhận được. Nếu muốn nhập đồ thị khác, vui lòng yêu cầu giải thuật toán từ đầu')
+                            dispatcher.utter_message(image = "./actions/graph/" + str(self.cnt) + ".png")
                             return []
-                        self.graph.addNode(st, weight)
-                    else:
-                        print(st, en, weight)
-                        try:
-                            self.graph.addEdge(st, en, weight)
-                        except:
-                            dispatcher.utter_message('Error! Đỉnh không tồn tại. Xin hãy nhập đỉnh trước khi nhập cạnh')
-                            return []
-                    st = None
-                    en = None
-                    self.graph.showGraph()
-            dispatcher.utter_message(text = msg, image = "./actions/graph/" + str(self.cnt) + ".png")
+                    
+                dispatcher.utter_message(text = msg, image = "./actions/graph/" + str(self.cnt) + ".png")
+            except Error as e:
+                print(e)
+                dispatcher.utter_message(text = 'Error! Lỗi bất thường từ máy chủ!Có vẻ tôi không hiểu input bạn muốn nhập. Nếu bạn vẫn gặp sự cố này, hãy liên hệ với admin qua telegram @colder203.  Nếu muốn nhập đồ thị khác, vui lòng yêu cầu giải thuật toán từ đầu')
+
+            return []
                         
         elif last_intent == 'get_edge':
             st = next(tracker.get_latest_entity_values("start_node",), None)

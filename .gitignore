@@ -7,3 +7,4 @@ actions/model
 actions/PhoBERT_base_transformers
 .rasa
 desktop.ini
+actions/graph

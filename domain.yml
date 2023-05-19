@@ -41,8 +41,8 @@ responses:
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_goodbye:
-  - text: Bye. Nếu có nhận xét gì xi bạn hãy nói cho tôi biết nhé.
-  - text: Hẹn gặp lại. Nếu có nhận xét gì xi bạn hãy nói cho tôi biết nhé.
+  - text: Bye. Nếu có nhận xét gì xin bạn hãy nói cho tôi biết nhé.
+  - text: Hẹn gặp lại. Nếu có nhận xét gì xin bạn hãy nói cho tôi biết nhé.
   - text: Mong bạn sẽ quay lại nói chuyện với tôi! Bạn có thể nói cho tôi biết nhận xét gì về tôi nếu bạn muốn nhé.
 
   utter_faq/ask_bot:
