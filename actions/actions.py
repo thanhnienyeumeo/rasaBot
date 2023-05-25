@@ -7,7 +7,7 @@ from pyuca import Collator
 import os
 
 from typing import Any, Text, Dict, List
-from actions.Search import Graph, greedy, AStar
+from actions.Search import Graph, greedy, AStar, AStarDFS
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from mysql.connector import connect, errorcode, Error
@@ -53,7 +53,7 @@ class ActionSolve(Action):
         
         if last_intent == 'solve_greedy' or last_intent == 'solve_A*':
             
-            self.algorithm = 'greedy' if last_intent == 'solve_greedy' else 'A*'
+            self.algorithm = 'greedy' if last_intent == 'solve_greedy' else 'A*' if last_intent == 'solve_A*' else 'A*_sau_dan'
             dispatcher.utter_message(text = "Bạn muốn nhập đồ thị có hướng hay vô hướng?",
                                      buttons = [{"payload": "/directed", "title" : "Có hướng"},
                                                 {"payload": "/undirected", "title": "Vô hướng"}])
@@ -128,7 +128,8 @@ class ActionSolve(Action):
                 return []
             msg = f'Đáp án đường đi tôi tìm được bằng thuật toán {self.algorithm}:'
             if(self.algorithm == 'greedy'): msg += greedy(st, en, self.graph)
-            else: msg += AStar(st, en, self.graph)
+            elif(self.algorithm == 'A*'): msg += AStar(st, en, self.graph)
+            else: msg += AStarDFS(st, en, self.graph)
             dispatcher.utter_message(text = msg)
 
         return []

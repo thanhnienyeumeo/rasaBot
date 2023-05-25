@@ -109,3 +109,13 @@ stories:
   - action: utter_register
   - intent: get_information
   - action: action_about_register
+
+- story: solve
+  steps:
+  - intent: solve
+  - action: utter_solve
+  - or:
+    - intent: solve_A*_sau_dan
+    - intent: solve_A*
+    - intent: solve_greedy
+  - action: action_solve

@@ -1,4 +1,4 @@
-import torch
+
 from transformers import AutoTokenizer, RobertaForSequenceClassification, RobertaConfig
 
 import numpy as np
@@ -40,5 +40,6 @@ def get(input):
     print('do tu tin', round(softmax(logits[0], label), 3))
 
     return label
+print(get('tôi rất tự tin'))
 
 

@@ -26,6 +26,8 @@ intents:
   - register
   - get_information
   - ask_comment
+  - solve
+  - solve_A*_sau_dan
   
 responses:
 
@@ -97,6 +99,17 @@ responses:
 
   utter_register:
   - text: "Nhập thông tin của bạn theo đúng định dạng như sau:  Tên bạn,Ngành,phương thức. Ví dụ: Nguyễn Trọng Hoàng,Công nghệ thông tin,Xét kết hợp"
+
+  utter_solve:
+  - text: "Chọn thuật toán bạn muốn giải"
+    buttons:
+    - title: "Giải 1 bài toán sử dụng tìm kiếm A*"
+      payload: "/solve_A*"
+    - title: "Giải 1 bài toán sử dụng tìm kiếm A* sâu dần"
+      payload: "/solve_A*_sau_dan"
+    - title: "Giải 1 bài toán sử dụng tìm kiếm tham lam"
+      payload: "/solve_greedy"
+
 entities:
   - method
   - name

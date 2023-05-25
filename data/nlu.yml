@@ -48,7 +48,21 @@ nlu:
     - Nêu định nghĩa thuật toán tìm kiếm A*
     - Nêu định nghĩa thuật toán A*
     - Nêu khái niệm thuật toán A*
-
+- intent: solve
+  examples: |
+    - Tôi muốn giải một bài toán
+    - Tôi muốn làm 1 bài toán tìm kiếm
+    - Hãy giúp tôi giải một bài toán
+    - Hãy giúp tôi giải một bài toán tìm kiếm
+    - Giải giúp tôi một bài toán tìm kiếm
+    - Dùng thuật toán tìm kiếm
+- intent: solve_A*_sau_dan
+  examples: |
+    - Giải 1 bài toán sử dụng tìm kiếm A* sâu dần
+    - Sử dụng thuật toán A* sâu dần tìm đường đi ngắn nhất
+    - Dùng A* sâu dần
+    - Xử lý một bài toán sử dụng tìm kiếm A* sâu dần
+    
 - intent: solve_A*
   examples: |
     - Giải 1 bài toán sử dụng tìm kiếm A*
